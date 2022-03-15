@@ -18,6 +18,8 @@ class Player:
             self.ranking), (self.pairing_nb), float(self.score)]
 
         return match_player
+    
+    
 
     def get_players_list():
         players_list = []

@@ -1,12 +1,37 @@
 from Models import Match
-
+from tinydb import TinyDB
+db = TinyDB('jtournament.json')
 
 class Round:
     """Class qui match initialise les rounds"""
 
-    def __init__(self) -> None:
-        self.match = Match()
-        self.match_list = []
+    def __init__(self, matches=None, name='', start_time='',
+            date_time_end=''):
+        # self.match = Match()
+        # self.match_list = []
+        self.r_table = db.table('Rounds')
+        self.matches = matches
+        self.name = name
+        self.start_time = start_time
+        self.date_time_end = date_time_end
+        self.id = ''
+    
+    def create_round(self, round_num):
+        self.name = "Rounds{}".format(round_num)
+        self.matches = self.generate_matches()
+        round_id = self.r_table.insert({
+            "matches": self.matches,
+            "name": self.name,
+            "start_time": self.start_time,
+            "date_time_end": self.date_time_end})
+        return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
+
+    def generate_matches(self):
+        matches_ids = []
+        for i in range(4):
+            match_id = Match().create_match()
+            matches_ids.append(match_id)
+        return matches_ids
 
     def pairing_first_round(self, players):
         """Associe les joueurs et créer le round"""

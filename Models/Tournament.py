@@ -6,8 +6,8 @@ class Tournament:
     """Classe qui permet de sauvegarder les informations des tournois dans un fichier au format json"""
 
     def __init__(self) -> None:
-        self.first_rounds = []
-        self.other_rounds = []
+        self.first_rounds = Round.pairing_first_round()
+        self.other_rounds = Round.pairing_other_round()
         self.player = Player()
 
     def add_tournament_and_players(self, tournament_dict, players_list):
@@ -23,7 +23,7 @@ class Tournament:
         tournament_table = jtournament.table("tournaments")
         tournament_table.insert(tournament_dict)
         return tournament_table
-
+s
     def get_round_number(self, tournament_number):
         """Retourne le numéro du round actuel d'un tournoi avec le numéro d'entrée en json(id du tournoi)"""
         jtournament = TinyDB("jtournament.json",
