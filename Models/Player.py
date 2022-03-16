@@ -1,5 +1,5 @@
 class Player:
-    """Classe de joueur qui initialiser les joueurs."""
+    """Classe qui instancie les joueurs."""
 
     def __init__(self, questions_informations):
         """Retourne le joueur avec son nom, prénom, rang, numéro d'appariement et score."""
@@ -18,8 +18,6 @@ class Player:
             self.ranking), (self.pairing_nb), float(self.score)]
 
         return match_player
-    
-    
 
     def get_players_list():
         players_list = []

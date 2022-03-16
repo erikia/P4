@@ -8,10 +8,14 @@ class RoundView:
     """La classe qui demande des informations sur le round à l'utilisateur"""
 
     def __init__(self):
-        self.player_1 = Match.Match().player_1
-        self.player_2 = Match.Match().player_2
-        self.player_score_1 = Match.Match().player_score_1
-        self.player_score_2 = Match.Match().player_score_2
+        # self.player_1 = Match.Match().player_1
+        # self.player_2 = Match.Match().player_2
+        # self.player_score_1 = Match.Match().player_score_1
+        # self.player_score_2 = Match.Match().player_score_2
+        self.player_1 = Match.Match.tuple_players().player_1
+        self.player_2 = Match.Match.tuple_players().player_2
+        self.player_score_1 = Match.Match.tuple_players().player_score_1
+        self.player_score_2 = Match.Match.tuple_players().player_score_2
 
     def return_match_result(self):
         """Retourne le match jouée et permet de rentrez les scores """

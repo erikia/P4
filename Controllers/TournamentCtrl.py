@@ -24,7 +24,7 @@ class TournamentCtrl:
         tournament.group_tournament_and_players()
         tournament.save_format_json()
         tournament.round_players(tournament_number)
-        tournament.first_round()
+        # tournament.start_round()
         menu = ApplicationCtrl.ApplicationCtrl()
 
         menu.start()
@@ -69,12 +69,23 @@ class TournamentCtrl:
             self.round_players.append(player_i)
         return self.round_players
 
-    def first_round(self):
-        """Docstring : resultat premier round , les 8 joueurs sont triés selon leur classement mondial saisi"""
-        first_round = Round.Round()
-        rank_players = sorted(self.round_players,
-                              key=lambda x: x[1], reverse=False)
+    def sort_players_by_ranking(self, players):
+        srtd_players = sorted(players, key=lambda x: x.ranking, reverse=True)
+        return srtd_players
+
+    def start_round(self):
+        """Docstring : """
+        # first_round = Round.Round()
+        # rank_players = sorted(self.round_players,
+        #                       key=lambda x: x[1], reverse=False)
+        # match_list = first_round.pairing_first_round(rank_players)
+
+        first_round = Tournament.Tournament().generate_rounds()
+        tournaments = TournamentCtrl.select_tournament(self)
+        rank_players = TournamentCtrl.sort_players_by_ranking(
+            tournaments.players)
         match_list = first_round.pairing_first_round(rank_players)
+
         view_round = RoundView.RoundView()
         numero_round = view_round.ask_go_next_round()
 
@@ -96,6 +107,17 @@ class TournamentCtrl:
             match_list[i][1][3] += float(player_score_2)
 
         return match_list, start, end
+
+    def select_tournament(self, show=False):
+        all_tournaments = Tournament.Tournament.get_total_tournaments(self)
+        tournaments_ids = []
+        for tournament in all_tournaments:
+            tournaments_ids.append(tournament.id)
+
+        if show:
+            self.tournaments_ids()
+        return tournaments_ids
+
 
 # rank_players = sorted(self.round_players, key=lambda x: x[1], reverse=False)
 # TypeError: '<' not supported between instances of 'dict' and 'dict'
@@ -135,24 +157,6 @@ class TournamentCtrl:
     #             match_list[i][1])
     #         match_list[i][0][3] += float(player_score_1)
     #         match_list[i][1][3] += float(player_score_2)
-
-        return match_list
-
-    def other_round(self):
-        """Docsring : resultat autre rounds, les 8 joueurs sont triés en fonction de leur nombre total de points """
-        other_round = Round.Round()
-        round_players = TournamentCtrl.round_players()
-        match_list = other_round.pairing_other_round(round_players)
-        numero_round = view.RoundView.ask_go_next_round()
-
-        for i in range(4):
-            view = view.RoundView(i, numero_round, match_list[i])
-            player_score_1 = RoundsCtrl.RoundInput.round_infos(
-                match_list[i][0])
-            player_score_2 = RoundsCtrl.RoundInput.round_infos(
-                match_list[i][1])
-            match_list[i][0][3] += float(player_score_1)
-            match_list[i][1][3] += float(player_score_2)
 
         return match_list
 

@@ -6,7 +6,7 @@ db = TinyDB('jtournament.json')
 
 
 class Match:
-    """Class qui initialise les matchs"""
+    """Class qui instancie les matchs"""
 
     # def __init__(self, player_1, player_2):
     #     self.player_1 = player_1
@@ -16,7 +16,7 @@ class Match:
         self.m_table = db.table('Matches')
         self.player_1 = player_1
         self.player_2 = player_2
-        self.player_score_1 = player_score_1        
+        self.player_score_1 = player_score_1
         self.player_score_2 = player_score_2
         self.id = ''
 
@@ -30,7 +30,7 @@ class Match:
         match_list = [self.player_1, self.player_score_1], [
             self.player_2, self.player_score_2]
         return match_list
-    
+
     def create_match(self):
         match_id = self.m_table.insert({
             'player_1': self.player_1,

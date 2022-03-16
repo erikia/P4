@@ -38,7 +38,7 @@ class Tournament:
     def generate_rounds(self):
         rounds_ids = []
         for i in range(self.num_of_rounds):
-            r = Round()
+            r = Round.Round()
             r.generate_matches()
             round_id = r.create_round(i+1)
             rounds_ids.append(round_id)

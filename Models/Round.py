@@ -5,7 +5,7 @@ db = TinyDB('jtournament.json')
 
 
 class Round:
-    """Class qui match initialise les rounds"""
+    """Class qui instancie les rounds"""
 
     def __init__(self, matches=None, name='', start_time='',
                  date_time_end=''):
@@ -22,16 +22,16 @@ class Round:
         self.name = "Rounds{}".format(round_num)
         self.matches = self.generate_matches()
         round_id = self.r_table.insert({
-            "matches": self.matches,
-            "name": self.name,
-            "start_time": self.start_time,
-            "date_time_end": self.date_time_end})
+            "Matches": self.matches,
+            "Nom": self.name,
+            "Debut du match": self.start_time,
+            "Fin du match": self.date_time_end})
         return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
 
     def generate_matches(self):
         matches_ids = []
         for i in range(4):
-            match_id = Match().create_match()
+            match_id = Match.Match().create_match()
             matches_ids.append(match_id)
         return matches_ids
 
