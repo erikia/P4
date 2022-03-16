@@ -1,12 +1,14 @@
+from datetime import datetime
 from Models import Match
 from tinydb import TinyDB
 db = TinyDB('jtournament.json')
+
 
 class Round:
     """Class qui match initialise les rounds"""
 
     def __init__(self, matches=None, name='', start_time='',
-            date_time_end=''):
+                 date_time_end=''):
         # self.match = Match()
         # self.match_list = []
         self.r_table = db.table('Rounds')
@@ -15,7 +17,7 @@ class Round:
         self.start_time = start_time
         self.date_time_end = date_time_end
         self.id = ''
-    
+
     def create_round(self, round_num):
         self.name = "Rounds{}".format(round_num)
         self.matches = self.generate_matches()
@@ -62,3 +64,14 @@ class Round:
         other_round.append(match_4.return_players_opponents())
 
         return other_round
+
+    def date_time_now(self):
+        now = datetime.now()
+        dt_string = now.strftime("%d/%m/%Y %H:%M:%S")
+        return dt_string
+
+    def finish_round(self):
+        self.date_time_end = self.date_time_now()
+
+    def start_round(self):
+        self.date_time_start = self.date_time_now()

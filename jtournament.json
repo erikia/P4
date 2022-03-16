@@ -3125,6 +3125,698 @@
                     "Adversaires": []
                 }
             ]
+        },
+        "20": {
+            "Nom/ID du tournois": "",
+            "Adresse du tournois": "",
+            "Les dates du tournois": "",
+            "Nombre total de rounds": 4,
+            "Nombre du round en cours": 0,
+            "Contrôle du temps": "",
+            "Numbre totals de joeurs": 8,
+            "Commentaire": "",
+            "Rounds": {},
+            "Players": [
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 1,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 2,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 3,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 4,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 5,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 6,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 7,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 8,
+                    "Score": 0,
+                    "Adversaires": []
+                }
+            ]
+        },
+        "21": {
+            "Nom/ID du tournois": "",
+            "Adresse du tournois": "",
+            "Les dates du tournois": "",
+            "Nombre total de rounds": 4,
+            "Nombre du round en cours": 0,
+            "Contrôle du temps": "",
+            "Numbre totals de joeurs": 8,
+            "Commentaire": "",
+            "Rounds": {},
+            "Players": [
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 1,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 2,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 3,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 4,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 5,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 6,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 7,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 8,
+                    "Score": 0,
+                    "Adversaires": []
+                }
+            ]
+        },
+        "22": {
+            "Nom/ID du tournois": "",
+            "Adresse du tournois": "",
+            "Les dates du tournois": "",
+            "Nombre total de rounds": 4,
+            "Nombre du round en cours": 0,
+            "Contrôle du temps": "",
+            "Numbre totals de joeurs": 8,
+            "Commentaire": "",
+            "Rounds": {},
+            "Players": [
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 1,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 2,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 3,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 4,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 5,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 6,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 7,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 8,
+                    "Score": 0,
+                    "Adversaires": []
+                }
+            ]
+        },
+        "23": {
+            "Nom/ID du tournois": "",
+            "Adresse du tournois": "",
+            "Les dates du tournois": "",
+            "Nombre total de rounds": 4,
+            "Nombre du round en cours": 0,
+            "Contrôle du temps": "",
+            "Numbre totals de joeurs": 8,
+            "Commentaire": "",
+            "Rounds": {},
+            "Players": [
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 2
+                    },
+                    "Numéro associé": 1,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 1
+                    },
+                    "Numéro associé": 2,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 47
+                    },
+                    "Numéro associé": 3,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 467
+                    },
+                    "Numéro associé": 4,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 34768
+                    },
+                    "Numéro associé": 5,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 3679
+                    },
+                    "Numéro associé": 6,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 79
+                    },
+                    "Numéro associé": 7,
+                    "Score": 0,
+                    "Adversaires": []
+                },
+                {
+                    "Nom de famille": {
+                        "Nom de famille": ""
+                    },
+                    "Prénom": {
+                        "Prénom": ""
+                    },
+                    "Date de naissance": {
+                        "Date de naissance": "0-0-0"
+                    },
+                    "Sexe": {
+                        "Sexe": "H"
+                    },
+                    "Rang": {
+                        "Rang": 4679
+                    },
+                    "Numéro associé": 8,
+                    "Score": 0,
+                    "Adversaires": []
+                }
+            ]
         }
     }
 }

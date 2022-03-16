@@ -15,8 +15,9 @@ class RoundsCtrl:
         self.round_dict = self.round_input.round_infos()
         return self.round_dict
 
-    def round_infos(self):
+    def round_infos():
         """Retourne un dictionnaire des informations du tournois """
+
         round_input = RoundView.RoundView()
         round_result = round_input.return_match_result()
 

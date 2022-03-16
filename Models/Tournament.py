@@ -1,19 +1,53 @@
 from tinydb import TinyDB
 from Models import Player, Round
+from tinydb import TinyDB
+db = TinyDB('jtournament.json')
 
 
 class Tournament:
     """Classe qui permet de sauvegarder les informations des tournois dans un fichier au format json"""
 
-    def __init__(self) -> None:
-        self.first_rounds = Round.pairing_first_round()
-        self.other_rounds = Round.pairing_other_round()
-        self.player = Player()
+    def __init__(self, name="", location="", date="", num_of_rounds=4, rounds=None, players=None,
+                 time_control="", description=""):
+        self.t_table = db.table('tournaments')
+        self.name = name
+        self.location = location
+        self.date = date
+        self.num_of_rounds = num_of_rounds
+        self.rounds = rounds
+        self.players = players
+        self.time_control = time_control
+        self.description = description
+        self.id = ''
+
+    def create_tournament(self):
+        self.rounds_ids = self.generate_rounds()
+        tournament_id = self.t_table.insert(
+            {"Nom/ID du tournois": self.name,
+             "Adresse du tournois": self.location,
+             "Les dates du tournois": self.date,
+             "Nombre total de rounds": self.num_of_rounds,
+             "Rounds": self.rounds_ids,
+             "Players": self.players,
+             "Contrôle du temps": self.time_control,
+             "Commentaire": self.description
+             })
+        return self.t_table.update(
+            {'id': tournament_id}, doc_ids=[tournament_id])[0]
+
+    def generate_rounds(self):
+        rounds_ids = []
+        for i in range(self.num_of_rounds):
+            r = Round()
+            r.generate_matches()
+            round_id = r.create_round(i+1)
+            rounds_ids.append(round_id)
+        return rounds_ids
 
     def add_tournament_and_players(self, tournament_dict, players_list):
         """Combine les informations sur les tournois et les joueurs"""
         self.total_tournament = tournament_dict
-        self.total_tournament["players"] = players_list
+        self.total_tournament["Players"] = players_list
         return self.total_tournament
 
     def save_format_json(self, tournament_dict):
@@ -23,7 +57,7 @@ class Tournament:
         tournament_table = jtournament.table("tournaments")
         tournament_table.insert(tournament_dict)
         return tournament_table
-s
+
     def get_round_number(self, tournament_number):
         """Retourne le numéro du round actuel d'un tournoi avec le numéro d'entrée en json(id du tournoi)"""
         jtournament = TinyDB("jtournament.json",
@@ -60,7 +94,7 @@ s
         else:
             tournament_id = tournament_number
 
-        players = tournament_table.get(doc_id=tournament_id)["players"]
+        players = tournament_table.get(doc_id=tournament_id)["Players"]
         return players
 
     def get_total_tournaments(self):
