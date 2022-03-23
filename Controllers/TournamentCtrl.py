@@ -14,20 +14,31 @@ class TournamentCtrl:
         self.tournament_input = TournamentCtrl.tournament_infos()
         self.players_input = PlayersCtrl.PlayersCtrl()
         self.tournament = Tournament.Tournament()
+        self.tournois_test = Tournament.Tournament()
+        self.rounds = Round.Round()
+        self.rounds_view = RoundView.RoundView()
 
     def start_tournament():
         """Retourne le classe TournamentCtrl, créé des nouveaux joueurs et exporte les informations dans un fichier json"""
-        tournament_number = 0
+        # tournament_number = 0
         tournament = TournamentCtrl()
+        rounds = RoundsCtrl.RoundsCtrl()
         tournament.call_tournament()
         tournament.call_players()
+        rounds.call_round()
         tournament.group_tournament_and_players()
+        tournament.group_tournament_and_rounds()
+        # tournament.test()
         tournament.save_format_json()
-        tournament.round_players(tournament_number)
+        # tournament.round_players(tournament_number)
         # tournament.start_round()
         menu = ApplicationCtrl.ApplicationCtrl()
 
         menu.start()
+
+    def test(self):
+        round_1 = self.tournament.group_tournament_and_rounds()
+        self.tournois_test.rounds.append(round_1)
 
     def tournament_infos():
         """Retourne un dictionnaire des informations du tournois """
@@ -43,21 +54,43 @@ class TournamentCtrl:
 
     def call_players(self):
         """Retourne les informations sur les joueurs rentrée par le menu"""
+
+        # Menu : saisie a la main des joueurs
         self.players_input.players_infos()
         self.players_list = self.players_input.sort_player_by_pairing_numbers()
         return self.players_list
 
+        # Menu : saisie d'une liste des joueurs déjà crée
+        # self.players_input = self.tournament.players
+        # self.players_list = self.players_input.sort_player_by_pairing_numbers()
+        # return self.players_list
+
     def group_tournament_and_players(self):
         """Retourne la liste des joueurs pour les regrouper ensemble dans un tournoi"""
-        tournament_infos = Tournament.Tournament()
+        tournament_infos = self.tournament
         self.total_tournament = tournament_infos.add_tournament_and_players(
             self.tournament_dict, self.players_list)
         return self.total_tournament
 
+    def group_tournament_and_rounds(self):
+        """Retourne la liste des rounds pour les regrouper ensemble dans un tournoi"""
+        tournament_infos = self.tournament
+        self.total_tournament = tournament_infos.add_tournament_and_rounds(
+            self.tournament_dict, self.rounds_list)
+        return self.total_tournament
+
+    def group_tournament_and_matchs(self):
+        """Retourne la liste des matchs pour les regrouper ensemble dans un tournoi"""
+        tournament_infos = self.tournament
+        self.total_tournament = tournament_infos.add_tournament_and_matchs(
+            self.tournament_dict, self.matchs_list)
+        return self.total_tournament
+
     def save_format_json(self):
         """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
-        save = Tournament.Tournament()
-        save.save_format_json(self.total_tournament)
+        save = self.tournament
+        save.save_format_json(self.tournois_test)
+        # save.save_format_json(self.total_tournament)
 
     def round_players(self, tournament_number):
         """Créer l'objet des rounds en récupérant les joueurs"""
@@ -80,23 +113,23 @@ class TournamentCtrl:
         #                       key=lambda x: x[1], reverse=False)
         # match_list = first_round.pairing_first_round(rank_players)
 
-        first_round = Tournament.Tournament().generate_rounds()
+        first_round = self.tournament.generate_rounds()
         tournaments = TournamentCtrl.select_tournament(self)
         rank_players = TournamentCtrl.sort_players_by_ranking(
             tournaments.players)
         match_list = first_round.pairing_first_round(rank_players)
 
-        view_round = RoundView.RoundView()
+        view_round = self.rounds
         numero_round = view_round.ask_go_next_round()
 
         for i in range(4):
-            view = RoundView.RoundView(i, numero_round, match_list[i])
+            view = self.rounds_view(i, numero_round, match_list[i])
 
-        ask_rounds = RoundView.RoundView()
+        ask_rounds = self.rounds_view
         ask_rounds.ask_start_round()
-        start = Round.Round().start_round()
+        start = self.rounds.start_round()
         ask_rounds.ask_end_round()
-        end = Round.Round().finish_round()
+        end = self.rounds.finish_round()
 
         for i in range(4):
             player_score_1 = view.return_match_result(
@@ -109,7 +142,7 @@ class TournamentCtrl:
         return match_list, start, end
 
     def select_tournament(self, show=False):
-        all_tournaments = Tournament.Tournament.get_total_tournaments(self)
+        all_tournaments = self.tournament.get_total_tournaments(self)
         tournaments_ids = []
         for tournament in all_tournaments:
             tournaments_ids.append(tournament.id)
@@ -162,5 +195,5 @@ class TournamentCtrl:
 
     def resumeTournament(self):
         """Reprend un ancien tournoi en cours"""
-        lenght = Tournament.Tournament()
+        lenght = self.tournament
         lenght_db = lenght.get_length_db()

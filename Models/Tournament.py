@@ -1,4 +1,5 @@
 from tinydb import TinyDB
+from Controllers import PlayersCtrl
 from Models import Player, Round
 from tinydb import TinyDB
 db = TinyDB('jtournament.json')
@@ -14,8 +15,10 @@ class Tournament:
         self.location = location
         self.date = date
         self.num_of_rounds = num_of_rounds
-        self.rounds = rounds
-        self.players = players
+        self.rounds = []
+        # self.players = players
+        # self.players = PlayersCtrl.PlayersCtrl.get_players_list()
+        self.players = PlayersCtrl.PlayersCtrl.players_list()
         self.time_control = time_control
         self.description = description
         self.id = ''
@@ -48,6 +51,18 @@ class Tournament:
         """Combine les informations sur les tournois et les joueurs"""
         self.total_tournament = tournament_dict
         self.total_tournament["Players"] = players_list
+        return self.total_tournament
+
+    def add_tournament_and_rounds(self, tournament_dict, rounds_list):
+        """Combine les informations sur les tournois et les rounds"""
+        self.total_tournament = tournament_dict
+        self.total_tournament["Rounds"] = rounds_list
+        return self.total_tournament
+
+    def add_tournament_and_matchs(self, tournament_dict, matchs_list):
+        """Combine les informations sur les tournois et les matchs"""
+        self.total_tournament = tournament_dict
+        self.total_tournament["Matchs"] = matchs_list
         return self.total_tournament
 
     def save_format_json(self, tournament_dict):
