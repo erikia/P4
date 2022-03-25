@@ -1,5 +1,6 @@
 import sys
 from Controllers import TournamentCtrl
+from Models import Tournament
 from Views import MenuView
 
 

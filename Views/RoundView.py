@@ -1,3 +1,4 @@
+from Models import Round
 from Views import PlayerView
 from tinydb import TinyDB
 from Models import Match
@@ -13,17 +14,39 @@ class RoundView:
         # self.player_score_1 = Match.Match().player_score_1
         # self.player_score_2 = Match.Match().player_score_2
         # self.player_1 = Match.Match.tuple_players()
+        # tuple_p = Match.Match.tuple_players()
+        # tuple_p.keys(1)
+        # print(tuple.keys(1))
         # self.player_2 = Match.Match.tuple_players().player_2
         # self.player_score_1 = Match.Match.tuple_players().player_score_1
         # self.player_score_2 = Match.Match.tuple_players().player_score_2
+        # rounds = Round.Round().matches
+        # tuples = Match.Match.tuple_players()
+
+        # self.player_1 = match.players()
+        # self.player_2 = Match.Match().player_2
+        # self.player_score_1 = Match.Match().player_score_1
+        # self.player_score_2 = Match.Match().player_score_2
         pass
 
-    def return_match_result(self):
+    def players_view(rounds):
+        for match in rounds.matches:
+            players = match.players()
+            player_1 = players[0]
+            player_2 = players[1]
+
+    def return_match_result(self, rounds):
         """Retourne le match jouée et permet de rentrez les scores """
+
+        for match in rounds.matches:
+            players = match.players()
+            player_1 = players[0]
+            player_2 = players[1]
+
         winner = PlayerView.PlayersView.verify_user_input(self,
                                                           msg_display=f"{self.player_1}) VS " +
                                                           f"{self.player_2})\n"
-                                                          f"Qui estGagnant ?\n"
+                                                          f"Qui est Gagnant ?\n"
                                                           f"0 - {self.player_1})\n"
                                                           f"1 - {self.player_2})\n"
                                                           f"2 - Égalité\n> ",

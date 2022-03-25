@@ -29,7 +29,7 @@ class TournamentView:
         informations_rounds_json["Contrôle du temps"] = informations_questions["Contrôle du temps"]
         informations_rounds_json["Numbre totals de joeurs"] = 8
         informations_rounds_json["Commentaire"] = informations_questions["Commentaire"]
-        informations_rounds_json["Rounds"] = {}
+        informations_rounds_json["Rounds"] = []
         print("")
 
         return informations_rounds_json

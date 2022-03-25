@@ -16,16 +16,32 @@ class Tournament:
         self.date = date
         self.num_of_rounds = num_of_rounds
         self.rounds = []
-        # self.players = players
-        # self.players = PlayersCtrl.PlayersCtrl.get_players_list()
         self.players = PlayersCtrl.PlayersCtrl.players_list()
         self.time_control = time_control
         self.description = description
         self.id = ''
 
+    def save_tournament(self):
+        if self.id == '':
+            result = self.create_tournament()
+        else:
+            result = self.t_table.update(
+                {"name": self.name,
+                 "location": self.location,
+                 "date_start": self.date_start,
+                 "date_end": self.date_end,
+                 "num_of_rounds": self.num_of_rounds,
+                 "rounds": self.rounds,
+                 "players": self.players,
+                 "time_control": self.time_control,
+                 "description": self.description,
+                 "id": self.id
+                 }, doc_ids=[self.id])[0]
+        return result
+
     def create_tournament(self):
         self.rounds_ids = self.generate_rounds()
-        tournament_id = self.t_table.insert(
+        tournament_id = self.t_table.update(
             {"Nom/ID du tournois": self.name,
              "Adresse du tournois": self.location,
              "Les dates du tournois": self.date,

@@ -20,18 +20,20 @@ class TournamentCtrl:
 
     def start_tournament():
         """Retourne le classe TournamentCtrl, créé des nouveaux joueurs et exporte les informations dans un fichier json"""
-        # tournament_number = 0
-        tournament = TournamentCtrl()
-        rounds = RoundsCtrl.RoundsCtrl()
-        tournament.call_tournament()
-        tournament.call_players()
-        rounds.call_round()
-        tournament.group_tournament_and_players()
-        tournament.group_tournament_and_rounds()
-        # tournament.test()
-        tournament.save_format_json()
-        # tournament.round_players(tournament_number)
-        # tournament.start_round()
+        tournament_number = 0
+        tournamentCtrl = TournamentCtrl()
+        # roundsCtrl = RoundsCtrl.RoundsCtrl()
+        tournamentCtrl.call_tournament()
+        tournamentCtrl.call_players()
+        tournamentCtrl.update_tournament()
+        # roundsCtrl.call_round()
+        # roundsCtrl.call_round()
+        tournamentCtrl.group_tournament_and_players()
+        # tournamentCtrl.group_tournament_and_rounds()
+        # tournamentCtrl.test()
+        tournamentCtrl.save_format_json()
+        # tournamentCtrl.round_players(tournament_number)
+        # tournamentCtrl.start_round()
         menu = ApplicationCtrl.ApplicationCtrl()
 
         menu.start()
@@ -52,18 +54,21 @@ class TournamentCtrl:
         self.tournament_dict = self.tournament_input
         return self.tournament_dict
 
+    def update_tournament(self):
+        return self.tournament.save_tournament()
+
     def call_players(self):
         """Retourne les informations sur les joueurs rentrée par le menu"""
 
         # Menu : saisie a la main des joueurs
-        self.players_input.players_infos()
-        self.players_list = self.players_input.sort_player_by_pairing_numbers()
-        return self.players_list
-
-        # Menu : saisie d'une liste des joueurs déjà crée
-        # self.players_input = self.tournament.players
+        # self.players_input.players_infos()
         # self.players_list = self.players_input.sort_player_by_pairing_numbers()
         # return self.players_list
+
+        # Menu : saisie d'une liste des joueurs déjà crée
+        self.players_list = self.tournament.players
+        # self.players_list = PlayersCtrl.PlayersCtrl.sort_player_by_pairing_numbers(self.players_input)
+        return self.players_list
 
     def group_tournament_and_players(self):
         """Retourne la liste des joueurs pour les regrouper ensemble dans un tournoi"""
@@ -89,8 +94,8 @@ class TournamentCtrl:
     def save_format_json(self):
         """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
         save = self.tournament
-        save.save_format_json(self.tournois_test)
-        # save.save_format_json(self.total_tournament)
+        # save.save_format_json(self.tournois_test)
+        save.save_format_json(self.total_tournament)
 
     def round_players(self, tournament_number):
         """Créer l'objet des rounds en récupérant les joueurs"""

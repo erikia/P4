@@ -29,14 +29,15 @@ class Match:
         """Retourne une tuple d'un match contenant les joueurs et leurs scores """
         match_list = [self.player_1, self.player_score_1], [
             self.player_2, self.player_score_2]
+        print(match_list)
         return match_list
 
     def create_match(self):
         match_id = self.m_table.insert({
-            'player_1': self.player_1,
-            'player_score_1': self.player_score_1,
-            'player_2': self.player_2,
-            'player_score_2': self.player_score_2
+            'Joueur 1': self.player_1,
+            'Score du Joueur 1': self.player_score_1,
+            'Joueur 2': self.player_2,
+            'Score du Joueur 2': self.player_score_2
         })
         return self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
 
@@ -58,10 +59,10 @@ class Match:
             result = self.create_match()
         else:
             result = self.m_table.update(
-                {'player_1': self.player_1,
-                 'player_score_1': self.player_score_1,
-                 'player_2': self.player_2,
-                 'player_score_2': self.player_score_2,
+                {'Joueur 1': self.player_1,
+                 'Score du Joueur 1': self.player_score_1,
+                 'Joueur 2': self.player_2,
+                 'Score du Joueur 2': self.player_score_2,
                  'id': self.id
                  }, doc_ids=[self.id])[0]
         return result
