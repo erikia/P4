@@ -25,15 +25,16 @@ class TournamentCtrl:
         # roundsCtrl = RoundsCtrl.RoundsCtrl()
         tournamentCtrl.call_tournament()
         tournamentCtrl.call_players()
-        tournamentCtrl.update_tournament()
-        # roundsCtrl.call_round()
-        # roundsCtrl.call_round()
+
+        tournamentCtrl.call_round()
+        # tournamentCtrl.call_matches()
+
         tournamentCtrl.group_tournament_and_players()
-        # tournamentCtrl.group_tournament_and_rounds()
-        # tournamentCtrl.test()
+        # tournamentCtrl.update_tournament()
+        tournamentCtrl.group_tournament_and_rounds()
+        # tournamentCtrl.group_tournament_and_matchs()
         tournamentCtrl.save_format_json()
-        # tournamentCtrl.round_players(tournament_number)
-        # tournamentCtrl.start_round()
+
         menu = ApplicationCtrl.ApplicationCtrl()
 
         menu.start()
@@ -54,6 +55,12 @@ class TournamentCtrl:
         self.tournament_dict = self.tournament_input
         return self.tournament_dict
 
+    # def update_tournament(self):
+    #     tournament_infos = self.tournament
+    #     self.total_tournament = tournament_infos.save_tournament(
+    #         self.tournament_dict)
+    #     return self.total_tournament
+
     def update_tournament(self):
         return self.tournament.save_tournament()
 
@@ -67,8 +74,18 @@ class TournamentCtrl:
 
         # Menu : saisie d'une liste des joueurs déjà crée
         self.players_list = self.tournament.players
-        # self.players_list = PlayersCtrl.PlayersCtrl.sort_player_by_pairing_numbers(self.players_input)
         return self.players_list
+
+    def call_round(self):
+        """Retourne les rounds sur le tournoi"""
+        self.round_dict = self.tournament.generate_rounds()
+        # self.round_dict = self.tournament.append_rounds()
+        return self.round_dict
+
+    def call_matches(self):
+        """Retourne les rounds sur le tournoi"""
+        self.matches_dict = self.rounds.generate_matches()
+        return self.matches_dict
 
     def group_tournament_and_players(self):
         """Retourne la liste des joueurs pour les regrouper ensemble dans un tournoi"""
@@ -81,14 +98,14 @@ class TournamentCtrl:
         """Retourne la liste des rounds pour les regrouper ensemble dans un tournoi"""
         tournament_infos = self.tournament
         self.total_tournament = tournament_infos.add_tournament_and_rounds(
-            self.tournament_dict, self.rounds_list)
+            self.tournament_dict, self.round_dict)
         return self.total_tournament
 
     def group_tournament_and_matchs(self):
         """Retourne la liste des matchs pour les regrouper ensemble dans un tournoi"""
         tournament_infos = self.tournament
         self.total_tournament = tournament_infos.add_tournament_and_matchs(
-            self.tournament_dict, self.matchs_list)
+            self.tournament_dict, self.matches_dict)
         return self.total_tournament
 
     def save_format_json(self):

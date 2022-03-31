@@ -29,19 +29,8 @@ class RoundView:
         # self.player_score_2 = Match.Match().player_score_2
         pass
 
-    def players_view(rounds):
-        for match in rounds.matches:
-            players = match.players()
-            player_1 = players[0]
-            player_2 = players[1]
-
     def return_match_result(self, rounds):
         """Retourne le match jouée et permet de rentrez les scores """
-
-        for match in rounds.matches:
-            players = match.players()
-            player_1 = players[0]
-            player_2 = players[1]
 
         winner = PlayerView.PlayersView.verify_user_input(self,
                                                           msg_display=f"{self.player_1}) VS " +

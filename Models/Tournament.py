@@ -1,5 +1,4 @@
 from tinydb import TinyDB
-from Controllers import PlayersCtrl
 from Models import Player, Round
 from tinydb import TinyDB
 db = TinyDB('jtournament.json')
@@ -16,10 +15,15 @@ class Tournament:
         self.date = date
         self.num_of_rounds = num_of_rounds
         self.rounds = []
-        self.players = PlayersCtrl.PlayersCtrl.players_list()
+        self.players = Player.Player.get_players_list(self)
         self.time_control = time_control
         self.description = description
         self.id = ''
+
+    def append_rounds(self):
+        append_r = self.generate_rounds()
+        self.rounds = append_r
+        return self.rounds
 
     def save_tournament(self):
         if self.id == '':
@@ -58,8 +62,8 @@ class Tournament:
         rounds_ids = []
         for i in range(self.num_of_rounds):
             r = Round.Round()
-            r.generate_matches()
-            round_id = r.create_round(i+1)
+            r.generate_matches(self.players)
+            round_id = r.create_round(i+1, self.players)
             rounds_ids.append(round_id)
         return rounds_ids
 

@@ -28,10 +28,16 @@ class RoundsCtrl:
 
     def __init__(self):
         """initier un objet sur les autres modules du code (modèle, vue et contrôleur de menu)"""
-        self.round = Round.Round()
         self.tournament = Tournament.Tournament()
 
     def call_round(self):
         """Retourne les rounds sur le tournoi rentrée par le menu"""
         self.round_dict = self.tournament.generate_rounds()
         return self.round_dict
+
+    def group_tournament_and_rounds(self):
+        """Retourne la liste des rounds pour les regrouper ensemble dans un tournoi"""
+        tournament_infos = self.tournament
+        self.total_tournament = tournament_infos.add_tournament_and_rounds(
+            self.tournament_dict, self.rounds_list)
+        return self.total_tournament
