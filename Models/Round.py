@@ -46,6 +46,22 @@ class Round:
 
         # match = Match.Match().create_match(players)
         # a = self.pairing_first_round(players)
+        # match_id = Match.Match().create_match(players)
+        # matches_ids.append(match_id)
+        for i in range(4):
+            # match_id = Match.Match().create_match()
+            # score = Match.Match().score_players(players)
+            
+            # matches_ids.append(score)
+            match_id =  self.pairing_first_round(players)
+            matches_ids.append(match_id)
+        return matches_ids
+    
+    def generate_matches2(self, players):
+        matches_ids = []
+
+        # match = Match.Match().create_match(players)
+        # a = self.pairing_first_round(players)
         match_id = self.pairing_first_round(players)
         matches_ids.append(match_id)
         # for i in range(4):
@@ -53,40 +69,7 @@ class Round:
         # matches_ids.append(match_id)
         return matches_ids
 
-    # def pairing_first_round(self, players):
-    #     """Associe les joueurs et créer le round"""
-    #     first_round = []
-
-    #     match_1 = Match.Match(players[0], players[4])
-    #     match_2 = Match.Match(players[1], players[5])
-    #     match_3 = Match.Match(players[2], players[6])
-    #     match_4 = Match.Match(players[3], players[7])
-    #     # first_round.append(match_1)
-    #     # first_round.append(match_2)
-    #     # first_round.append(match_3)
-    #     # first_round.append(match_4)
-
-    #     a = match_1.return_players_opponents()
-    #     aa = Match.Match.create_match(a)
-    #     b = match_2.return_players_opponents()
-    #     bb = Match.Match.create_match(b)
-    #     c = match_3.return_players_opponents()
-    #     cc = Match.Match.create_match(c)
-    #     d = match_4.return_players_opponents()
-    #     dd = Match.Match.create_match(d)
-
-    #     first_round.append(aa)
-    #     first_round.append(bb)
-    #     first_round.append(cc)
-    #     first_round.append(dd)
-
-    #     # first_round.append(match_1.return_players_opponents())
-    #     # first_round.append(match_2.return_players_opponents())
-    #     # first_round.append(match_3.return_players_opponents())
-    #     # first_round.append(match_4.return_players_opponents())
-
-    #     return first_round
-
+    
     def pairing_first_round(self, players):
         """Associe les joueurs et continue les autres rounds"""
         first_round = []

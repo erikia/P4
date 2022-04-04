@@ -15,7 +15,7 @@ class Tournament:
         self.date = date
         self.num_of_rounds = num_of_rounds
         self.rounds = []
-        self.players = Player.Player.get_players_list(self)
+        self.players = Player.Player.get_players_list()
         self.time_control = time_control
         self.description = description
         self.id = ''
@@ -149,3 +149,11 @@ class Tournament:
             all_tournaments.append(one_tournament)
 
         return all_tournaments
+    
+    def print_tournaments_list(self, all_tournaments):
+        """Print the list of all saved tournaments in the database"""
+        print(f"Liste de l'ensemble des tournois enregistrés")
+        print("")
+        for tournament in all_tournaments:
+            print(tournament)
+        print("")

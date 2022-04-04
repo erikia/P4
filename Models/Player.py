@@ -50,25 +50,25 @@ class Player:
 
         return player
 
-    def get_players_list(self):
+    def get_players_list():
         players_list: list = []
 
-        player1 = {self.name: 'Dubois', 'Prénom': 'Charles', 'Date de naissance': '05/04/1995',
-                   'Sexe': 'Homme', 'Rang': 356, 'Numéro associé': 1, 'Score': 0, 'Adversaires': []}
-        player2 = {self.name: 'Alcor', 'Prénom': 'David', 'Date de naissance': '17/12/1945',
-                   'Sexe': 'Homme', 'Rang': 287, 'Numéro associé': 2, 'Score': 0, 'Adversaires': []}
-        player3 = {self.name: 'Garry', 'Prénom': 'Kasparov', 'Date de naissance': '1/06/1967',
-                   'Sexe': 'Homme', 'Rang': 593, 'Numéro associé': 3, 'Score': 0, 'Adversaires': []}
-        player4 = {self.name: 'Judit', 'Prénom': 'Polgar', 'Date de naissance': '1/06/1967',
-                   'Sexe': 'Femme', 'Rang': 407, 'Numéro associé': 4, 'Score': 0, 'Adversaires': []}
-        player5 = {self.name: 'Fabiano', 'Prénom': 'Caruana', 'Date de naissance': '15/11/1978',
-                   'Sexe': 'Homme', 'Rang': 579, 'Numéro associé': 5, 'Score': 0, 'Adversaires': []}
-        player6 = {self.name: 'Anish', 'Prénom': 'Giri', 'Date de naissance': '26/03/2000',
-                   'Sexe': 'Homme', 'Rang': 68, 'Numéro associé': 6, 'Score': 0, 'Adversaires': []}
-        player7 = {self.name: 'Boris', 'Prénom': 'Spassky', 'Date de naissance': '18/01/1935',
-                   'Sexe': 'Homme', 'Rang': 708, 'Numéro associé': 7, 'Score': 0, 'Adversaires': []}
-        player8 = {self.name: 'Hikaru', 'Prénom': 'Nakamura', 'Date de naissance': '28/08/1985',
-                   'Sexe': 'Homme', 'Rang': 84, 'Numéro associé': 8, 'Score': 0, 'Adversaires': []}
+        player1 = {'Nom de famille': 'Dubois', 'Prénom': 'Charles', 'Date de naissance': '05/04/1995',
+                'Sexe': 'Homme', 'Rang': 356, 'Numéro associé': 1, 'Score': 0, 'Adversaires': []}
+        player2 = {'Nom de famille': 'Alcor', 'Prénom': 'David', 'Date de naissance': '17/12/1945',
+                'Sexe': 'Homme', 'Rang': 287, 'Numéro associé': 2, 'Score': 0, 'Adversaires': []}
+        player3 = {'Nom de famille': 'Garry', 'Prénom': 'Kasparov', 'Date de naissance': '1/06/1967',
+                'Sexe': 'Homme', 'Rang': 593, 'Numéro associé': 3, 'Score': 0, 'Adversaires': []}
+        player4 = {'Nom de famille': 'Judit', 'Prénom': 'Polgar', 'Date de naissance': '1/06/1967',
+                'Sexe': 'Femme', 'Rang': 407, 'Numéro associé': 4, 'Score': 0, 'Adversaires': []}
+        player5 = {'Nom de famille': 'Fabiano', 'Prénom': 'Caruana', 'Date de naissance': '15/11/1978',
+                'Sexe': 'Homme', 'Rang': 579, 'Numéro associé': 5, 'Score': 0, 'Adversaires': []}
+        player6 = {'Nom de famille': 'Anish', 'Prénom': 'Giri', 'Date de naissance': '26/03/2000',
+                'Sexe': 'Homme', 'Rang': 68, 'Numéro associé': 6, 'Score': 0, 'Adversaires': []}
+        player7 = {'Nom de famille': 'Boris', 'Prénom': 'Spassky', 'Date de naissance': '18/01/1935',
+                'Sexe': 'Homme', 'Rang': 708, 'Numéro associé': 7, 'Score': 0, 'Adversaires': []}
+        player8 = {'Nom de famille': 'Hikaru', 'Prénom': 'Nakamura', 'Date de naissance': '28/08/1985',
+                'Sexe': 'Homme', 'Rang': 84, 'Numéro associé': 8, 'Score': 0, 'Adversaires': []}
         players_list.append(player1)
         players_list.append(player2)
         players_list.append(player3)
@@ -79,32 +79,21 @@ class Player:
         players_list.append(player8)
         return players_list
 
-
-def players_list():
-    players_list: list = []
-
-    player1 = {'Nom de famille': 'Dubois', 'Prénom': 'Charles', 'Date de naissance': '05/04/1995',
-               'Sexe': 'Homme', 'Rang': 356, 'Numéro associé': 1, 'Score': 0, 'Adversaires': []}
-    player2 = {'Nom de famille': 'Alcor', 'Prénom': 'David', 'Date de naissance': '17/12/1945',
-               'Sexe': 'Homme', 'Rang': 287, 'Numéro associé': 2, 'Score': 0, 'Adversaires': []}
-    player3 = {'Nom de famille': 'Garry', 'Prénom': 'Kasparov', 'Date de naissance': '1/06/1967',
-               'Sexe': 'Homme', 'Rang': 593, 'Numéro associé': 3, 'Score': 0, 'Adversaires': []}
-    player4 = {'Nom de famille': 'Judit', 'Prénom': 'Polgar', 'Date de naissance': '1/06/1967',
-               'Sexe': 'Femme', 'Rang': 407, 'Numéro associé': 4, 'Score': 0, 'Adversaires': []}
-    player5 = {'Nom de famille': 'Fabiano', 'Prénom': 'Caruana', 'Date de naissance': '15/11/1978',
-               'Sexe': 'Homme', 'Rang': 579, 'Numéro associé': 5, 'Score': 0, 'Adversaires': []}
-    player6 = {'Nom de famille': 'Anish', 'Prénom': 'Giri', 'Date de naissance': '26/03/2000',
-               'Sexe': 'Homme', 'Rang': 68, 'Numéro associé': 6, 'Score': 0, 'Adversaires': []}
-    player7 = {'Nom de famille': 'Boris', 'Prénom': 'Spassky', 'Date de naissance': '18/01/1935',
-               'Sexe': 'Homme', 'Rang': 708, 'Numéro associé': 7, 'Score': 0, 'Adversaires': []}
-    player8 = {'Nom de famille': 'Hikaru', 'Prénom': 'Nakamura', 'Date de naissance': '28/08/1985',
-               'Sexe': 'Homme', 'Rang': 84, 'Numéro associé': 8, 'Score': 0, 'Adversaires': []}
-    players_list.append(player1)
-    players_list.append(player2)
-    players_list.append(player3)
-    players_list.append(player4)
-    players_list.append(player5)
-    players_list.append(player6)
-    players_list.append(player7)
-    players_list.append(player8)
-    return players_list
+    def current_score(self, tournament):
+        score = 0
+        for round_ in tournament.rounds:
+            for match in round_.matches:
+                if match.player_score_1 != '':
+                    if match.player_1 == self.id:
+                        score += match.player_score_1
+                    elif match.player_2 == self.id:
+                        score += match.player_score_1
+        return score
+    
+    def read_players(self):
+        all_players = []
+        players_from_db = self.p_table.all()
+        for pl in players_from_db:
+            player = Player.get_player_from_id(pl.doc_id)
+            all_players.append(player)
+        return all_players

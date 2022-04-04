@@ -219,3 +219,5 @@ class TournamentCtrl:
         """Reprend un ancien tournoi en cours"""
         lenght = self.tournament
         lenght_db = lenght.get_length_db()
+    
+    

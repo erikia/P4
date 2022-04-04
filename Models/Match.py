@@ -15,6 +15,17 @@ class Match:
         self.player_score_1 = player_score_1
         self.player_score_2 = player_score_2
         self.id = ''
+    
+    # def __init__(self):
+    #     self.players = Player.Player.get_players_list()
+    #     self.m_table = db.table('Matches')
+    #     self.player_1 = self.players.name[0]
+    #     self.player_score_1 = 0
+    #     self.player_2 = self.players.name[1]
+    #     self.player_score_2 = 0
+    #     self.winner = ""
+    #     self.id = ''
+    #     self.name = Player.Player().name
 
     def return_players_opponents(self):
         """Associe les joueurs lors d'un match"""
@@ -36,11 +47,11 @@ class Match:
     #     })
     #     return self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
 
-    def create_match(self, ):
+    def create_match(self):
         match_id = self.m_table.insert({
-            'Joueur 1': self.player_1.name,
+            'Joueur 1': self.player_1,
             'Score du Joueur 1': self.player_score_1,
-            'Joueur 2': self.player_2.name,
+            'Joueur 2': self.player_2,
             'Score du Joueur 2': self.player_score_2
         })
         # self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
@@ -52,11 +63,9 @@ class Match:
         players.append(Player.get_player_from_id(self.player_2))
         return players
 
-    def score_players(self):
+    def score_players(self, players):
         """Retourne la vue pour affichier le score du match"""
-        players = players()
-        self.view_score = RoundView.RoundView()
-        self.score = self.view_score.return_match_result(players)
+        self.score = self.return_match_result(players)
         return self.score
 
     def save_match(self):
@@ -72,9 +81,9 @@ class Match:
                  }, doc_ids=[self.id])[0]
         return result
 
-    def return_match_result(self):
+    def return_match_result(self, players):
         """Retourne le match jouée et permet de rentrez les scores """
-
+        start = self.create_match()
         winner = PlayerView.PlayersView.verify_user_input(self,
                                                           msg_display=f"{self.player_1}) VS " +
                                                           f"{self.player_2})\n"
@@ -87,18 +96,23 @@ class Match:
                                                           assertions=[
                                                               "0", "1", "2"]
                                                           )
+        for i in start:
+            if winner == "0":
+                self.winner = self.player_1
+                self.player_score_1 += 1
+                self.save_match
+            elif winner == "1":
+                self.winner = self.player_2
+                self.player_score_2 += 1
+                self.save_match
+            elif winner == "2":
+                self.winner = "Égalité"
+                self.player_score_1 += 0.5
+                self.player_score_2 += 0.5
+                self.save_match
+            else:
+                print(
+                    f"Merci d'entrer: 1, 2 ou 0 dans la console")
+                self.winner()
+    
 
-        if winner == "0":
-            self.winner = self.player_1
-            self.player_score_1 += 1
-        elif winner == "1":
-            self.winner = self.player_2
-            self.player_score_2 += 1
-        elif winner == "2":
-            self.winner = "Égalité"
-            self.player_score_1 += 0.5
-            self.player_score_2 += 0.5
-        else:
-            print(
-                f"Merci d'entrer: 1, 2 ou 0 dans la console")
-            self.winner()
