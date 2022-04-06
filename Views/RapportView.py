@@ -59,7 +59,7 @@ class RapportView:
         return self.command
     
     def return_tournaments_number(self):
-        """Display tournament selection menu"""
+        
 
         print(
             f"\nMenu des rapports des tournois\n"

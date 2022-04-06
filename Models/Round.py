@@ -48,13 +48,13 @@ class Round:
         # a = self.pairing_first_round(players)
         # match_id = Match.Match().create_match(players)
         # matches_ids.append(match_id)
-        for i in range(4):
+        # for i in range(4):
             # match_id = Match.Match().create_match()
             # score = Match.Match().score_players(players)
             
             # matches_ids.append(score)
-            match_id =  self.pairing_first_round(players)
-            matches_ids.append(match_id)
+        match_id =  self.pairing_first_round(players)
+        matches_ids.append(match_id)
         return matches_ids
     
     def generate_matches2(self, players):

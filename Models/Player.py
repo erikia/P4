@@ -1,3 +1,6 @@
+from tinydb import TinyDB
+db = TinyDB('jtournament.json')
+
 class Player:
     """Classe qui instancie les joueurs."""
 
@@ -11,6 +14,7 @@ class Player:
         # self.pairing_nb = questions_informations["Numéro associé"]
         # self.score = questions_informations["Score"]
         # self.opponents = questions_informations["Adversaires"]
+        self.p_table = db.table('players')
         self.name = ["Nom de famille"]
         self.first_name = ["Prénom"]
         self.date = ["Date de naissance"]
@@ -37,10 +41,10 @@ class Player:
             self.date = questions_informations["Date de naissance"]
             self.gender = questions_informations["Sexe"]
             self.ranking = questions_informations["Rang"]
+            self.pairing_nb = questions_informations["Numéro associé"]
+            self.score = questions_informations["Score"]
+            self.opponents = questions_informations["Adversaires"]
             self.id = id_num
-        # self.pairing_nb = questions_informations["Numéro associé"]
-        # self.score = questions_informations["Score"]
-        # self.opponents = questions_informations["Adversaires"]
         # player.last_name = player_data["last_name"]
         # player.first_name = player_data["first_name"]
         # player.birth_date = player_data["birth_date"]
