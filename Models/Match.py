@@ -1,3 +1,4 @@
+from Controllers import PlayersCtrl
 from Models import Player
 from tinydb import TinyDB
 
@@ -8,24 +9,16 @@ db = TinyDB('jtournament.json')
 class Match:
     """Class qui instancie les matchs"""
 
-    def __init__(self, player_1, player_2, player_score_1='', player_score_2=''):
+    def __init__(self, player_1, player_2):
         self.m_table = db.table('Matches')
+        # self.player_1 = players[0]
         self.player_1 = player_1
+        # self.player_2 = players[1]
         self.player_2 = player_2
-        self.player_score_1 = player_score_1
-        self.player_score_2 = player_score_2
+        self.player_score_1 = 0
+        self.player_score_2 = 0
         self.id = ''
-    
-    # def __init__(self):
-    #     self.players = Player.Player.get_players_list()
-    #     self.m_table = db.table('Matches')
-    #     self.player_1 = self.players.name[0]
-    #     self.player_score_1 = 0
-    #     self.player_2 = self.players.name[1]
-    #     self.player_score_2 = 0
-    #     self.winner = ""
-    #     self.id = ''
-    #     self.name = Player.Player().name
+        # player_1, player_2, players
 
     def return_players_opponents(self):
         """Associe les joueurs lors d'un match"""
@@ -38,24 +31,18 @@ class Match:
             self.player_2, self.player_score_2]
         return match_list
 
-    # def create_match(self):
-    #     match_id = self.m_table.insert({
-    #         'Joueur 1': self.player_1.name,
-    #         'Score du Joueur 1': self.player_score_1,
-    #         'Joueur 2': self.player_2.name,
-    #         'Score du Joueur 2': self.player_score_2
-    #     })
-    #     return self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
-
-    def create_match(self):
+    def create_match(self, players):
+        # match =  self.r_table.in
         match_id = self.m_table.insert({
-            'Joueur 1': self.player_1,
+            'Joueur 1': players[0],
+            # 'Joueur 1': self.player_1,
             'Score du Joueur 1': self.player_score_1,
-            'Joueur 2': self.player_2,
+            'Joueur 2':  players[1],
+            # 'Joueur 2': self.player_2,
             'Score du Joueur 2': self.player_score_2
         })
-        # self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
-        return self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
+        return match_id
+        # return self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
 
     def players(self):
         players = []
@@ -81,13 +68,13 @@ class Match:
                  }, doc_ids=[self.id])[0]
         return result
 
-    def return_match_result(self, players):
+    def return_match_result(self):
         """Retourne le match jouée et permet de rentrez les scores """
-        start = self.create_match()
+        print("\nLes résultats du match peuvent être soumis : \n")
         winner = PlayerView.PlayersView.verify_user_input(self,
                                                           msg_display=f"{self.player_1}) VS " +
                                                           f"{self.player_2})\n"
-                                                          f"Qui est Gagnant ?\n"
+                                                          f"Qui est est le gagnant ?\n"
                                                           f"0 - {self.player_1})\n"
                                                           f"1 - {self.player_2})\n"
                                                           f"2 - Égalité\n> ",
@@ -96,23 +83,36 @@ class Match:
                                                           assertions=[
                                                               "0", "1", "2"]
                                                           )
-        for i in start:
-            if winner == "0":
-                self.winner = self.player_1
-                self.player_score_1 += 1
-                self.save_match
-            elif winner == "1":
-                self.winner = self.player_2
-                self.player_score_2 += 1
-                self.save_match
-            elif winner == "2":
-                self.winner = "Égalité"
-                self.player_score_1 += 0.5
-                self.player_score_2 += 0.5
-                self.save_match
-            else:
-                print(
-                    f"Merci d'entrer: 1, 2 ou 0 dans la console")
-                self.winner()
+
+        if winner == "0":
+            self.winner = self.player_1
+            self.player_score_1 += 1
+            self.save_match
+        elif winner == "1":
+            self.winner = self.player_2
+            self.player_score_2 += 1
+            self.save_match
+        elif winner == "2":
+            self.winner = "Égalité"
+            self.player_score_1 += 0.5
+            self.player_score_2 += 0.5
+            self.save_match
+        else:
+            print(
+                f"Merci d'entrer: 1, 2 ou 0 dans la console")
+            self.winner()
+    
+    def get_serialized_match(self, players):
+        return {
+            'Joueur 1': self.player_1,
+            # 'Joueur 1': players[0],
+            # 'Score du Joueur 1': self.player_score_1,
+            'Score du Joueur 1': 0,
+            # 'Joueur 2': self.player_2.get_serialized_player(),
+            'Joueur 2':  players[1],
+            # 'Score du Joueur 2': self.player_score_2,
+            'Score du Joueur 2': 0,
+            # "winner": self.winner
+        }
     
 
