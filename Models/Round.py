@@ -12,7 +12,6 @@ class Round:
         # self.match = Match()
         # self.match_list = []
         self.r_table = db.table('Rounds')
-        self.opponents = opponents
         self.matches = matches
         self.name = name
         self.start_time = start_time
@@ -21,7 +20,7 @@ class Round:
 
     def create_round(self, round_num, players):
         self.name = "Rounds".format(round_num)
-        self.matches = self.generate_matches2(players)
+        self.matches = self.generate_matches(players)
         round_id = self.r_table.insert({
             "Matches": self.matches,
             "Nom": self.name,
@@ -46,26 +45,6 @@ class Round:
     def generate_matches(self, players):
         matches_ids = []
 
-        # match = Match.Match().create_match(players)
-        # a = self.pairing_first_round(players)
-        # match_id = Match.Match().create_match(players)
-        # matches_ids.append(match_id)
-        # for i in range(4):
-        # match_id = Match.Match().create_match()
-        # score = Match.Match().score_players(players)
-
-        # matches_ids.append(score)
-        match_id = self.pairing_first_round(players)
-        matches_ids.append(match_id)
-        return matches_ids
-
-    def generate_matches2(self, players):
-        matches_ids = []
-
-        # match = Match.Match().create_match(players)
-        # a = self.pairing_first_round(players)
-        # match_id = self.pairing_first_round(players)
-        # matches_ids.append(match_id)
         for i in range(4):
             match_id = Match.Match.get_serialized_match(self, players)
             matches_ids.append(match_id)

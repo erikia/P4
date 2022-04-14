@@ -28,7 +28,7 @@ class PlayersCtrl:
             self.players, key=lambda x: x.rank, reverse=True)
         return sorted_players
         
-    def get_players_list():
+    # def get_players_list():
         players_list: list = []
 
         p1 = Player.Player('Dubois', 'Charles', '05/04/1995', 'Homme', 356, 1, 0, [])
@@ -57,6 +57,27 @@ class PlayersCtrl:
         players_list.append(player6)
         players_list.append(player7)
         players_list.append(player8)
+        
+        return players_list
+    
+    def get_players_list():
+        players_list: list = []
+        p1 = Player.Player('Dubois', 'Charles', '05/04/1995', 'Homme', 356, 1, 0, [])
+        p2 = Player.Player('Alcor', 'David', '17/12/1945', 'Homme', 287, 2, 0, [])
+        p3 = Player.Player('Garry', 'Kasparov', '1/06/1967', 'Homme', 593, 3, 0, [])
+        p4 = Player.Player('Judit', 'Polgar', '1/06/1967','Femme', 407, 4, 0, [])
+        p5 = Player.Player('Fabiano', 'Caruana', '15/11/1978', 'Homme', 57, 5, 0, [])
+        p6 = Player.Player('Anish', 'Giri', '26/03/2000','Homme',68, 6, 0, [])
+        p7 = Player.Player('Boris', 'Spassky', '18/01/1935', 'Homme', 708, 7, 0, [])
+        p8 = Player.Player('Hikaru', 'Nakamura', '28/08/1985', 'Homme', 84, 8, 0, [])
+        players_list.append(p1)
+        players_list.append(p2)
+        players_list.append(p3)
+        players_list.append(p4)
+        players_list.append(p5)
+        players_list.append(p6)
+        players_list.append(p7)
+        players_list.append(p8)
         
         return players_list
 

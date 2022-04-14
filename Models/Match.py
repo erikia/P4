@@ -104,8 +104,8 @@ class Match:
     
     def get_serialized_match(self, players):
         return {
-            'Joueur 1': self.player_1,
-            # 'Joueur 1': players[0],
+            # 'Joueur 1': self.player_1,
+            'Joueur 1': players[0],
             # 'Score du Joueur 1': self.player_score_1,
             'Score du Joueur 1': 0,
             # 'Joueur 2': self.player_2.get_serialized_player(),
