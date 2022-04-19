@@ -26,23 +26,6 @@ class Tournament:
         self.rounds = append_r
         return self.rounds
 
-    def save_tournament(self):
-        if self.id == '':
-            result = self.create_tournament()
-        else:
-            result = self.t_table.update(
-                {"name": self.name,
-                 "location": self.location,
-                 "date_start": self.date_start,
-                 "date_end": self.date_end,
-                 "num_of_rounds": self.num_of_rounds,
-                 "rounds": self.rounds,
-                 "players": self.players,
-                 "time_control": self.time_control,
-                 "description": self.description,
-                 "id": self.id
-                 }, doc_ids=[self.id])[0]
-        return result
 
     def create_tournament(self):
         self.rounds_ids = self.generate_rounds()
@@ -67,16 +50,7 @@ class Tournament:
             round_id = r.create_round(i+1, self.players)
             rounds_ids.append(round_id)
         return rounds_ids
-    
-    # def generate_rounds(self):
-    #     rounds_ids = []
-    #     for i in range(self.num_of_rounds):
-    #         r = Round.Round()
-    #         r.generate_matches(self.players)
-    #         round_id = r.create_round(i+1, self.players)
-    #         rounds_ids.append(round_id)
-    #     return rounds_ids
-
+ 
     def add_tournament_and_players(self, tournament_dict, players_list):
         """Combine les informations sur les tournois et les joueurs"""
         self.total_tournament = tournament_dict
@@ -103,21 +77,6 @@ class Tournament:
         tournament_table.insert(tournament_dict)
         return tournament_table
 
-    def get_round_number(self, tournament_number):
-        """Retourne le numéro du round actuel d'un tournoi avec le numéro d'entrée en json(id du tournoi)"""
-        jtournament = TinyDB("jtournament.json",
-                             ensure_ascii=False, encoding="utf8", indent=4)
-        tournament_table = jtournament.table("tournaments")
-        tournament_id = None
-
-        if tournament_number == 0:
-            tournament_id = len(tournament_table)
-        else:
-            tournament_id = tournament_number
-
-        round_number = tournament_table.get(doc_id=tournament_id)[
-            "Nombre du round en cours"]
-        return round_number
 
     def get_length_db(self):
         """Retourne le numéro d'entrée dans la base de données json"""
