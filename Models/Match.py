@@ -11,14 +11,12 @@ class Match:
 
     def __init__(self, player_1, player_2):
         self.m_table = db.table('Matches')
-        # self.player_1 = players[0]
         self.player_1 = player_1
-        # self.player_2 = players[1]
         self.player_2 = player_2
         self.player_score_1 = 0
         self.player_score_2 = 0
+        self.winner = ""
         self.id = ''
-        # player_1, player_2, players
 
     def return_players_opponents(self):
         """Associe les joueurs lors d'un match"""
@@ -102,18 +100,14 @@ class Match:
             print(
                 f"Merci d'entrer: 1, 2 ou 0 dans la console")
             self.winner()
-    
-    def get_serialized_match(self, players):
+
+    def save_match(self):
         return {
-            # 'Joueur 1': self.player_1,
-            'Joueur 1': players[0],
-            # 'Score du Joueur 1': self.player_score_1,
-            'Score du Joueur 1': 0,
-            # 'Joueur 2': self.player_2.get_serialized_player(),
-            'Joueur 2':  players[1],
-            # 'Score du Joueur 2': self.player_score_2,
-            'Score du Joueur 2': 0,
-            # "winner": self.winner
+            "player1": self.player_1,
+            "score_player1": self.player_score_1,
+            "player2": self.player_2,
+            "score_player2": self.player_score_2,
+            "winner": self.winner,
         }
-    
+
 

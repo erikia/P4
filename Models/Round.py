@@ -39,24 +39,35 @@ class Round:
         matches_ids = []
 
         for i in range(4):
-            match_id = self.pairing_round(players)
-            matches_ids.append(match_id)
+            match = self.pairing_round(players)
+            matches_ids.append(match)
         return matches_ids
+    
+    def score(self, players):
+        match = self.generate_matches(players)
+        score = Match.Match.return_match_result(match)
+
+        return score
 
 
     def pairing_round(self, players):
         """Associe les joueurs et continue les autres rounds"""
         rounds = []
 
+        # match = Match.Match()
+        # print(players)
         match_1 = Match.Match(players[0], players[1])
         match_2 = Match.Match(players[2], players[3])
         match_3 = Match.Match(players[4], players[5])
         match_4 = Match.Match(players[6], players[7])
+        m1 = match_1.return_match_result()
+
+        rounds.append(m1)
         rounds.append(match_1.tuple_players())
         rounds.append(match_2.tuple_players())
         rounds.append(match_3.tuple_players())
         rounds.append(match_4.tuple_players())
-
+        # .return_match_result() .tuple_players()
         return rounds
 
 

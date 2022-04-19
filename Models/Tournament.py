@@ -1,5 +1,6 @@
 from tinydb import TinyDB
 from Controllers import PlayersCtrl
+from Controllers import TournamentCtrl
 from Models import Player, Round
 from tinydb import TinyDB
 db = TinyDB('jtournament.json')
@@ -21,36 +22,16 @@ class Tournament:
         self.description = description
         self.id = ''
 
-    def append_rounds(self):
-        append_r = self.generate_rounds()
-        self.rounds = append_r
-        return self.rounds
-
-
-    def create_tournament(self):
-        self.rounds_ids = self.generate_rounds()
-        tournament_id = self.t_table.update(
-            {"Nom/ID du tournois": self.name,
-             "Adresse du tournois": self.location,
-             "Les dates du tournois": self.date,
-             "Nombre total de rounds": self.num_of_rounds,
-             "Rounds": self.rounds_ids,
-             "Players": self.players,
-             "Contrôle du temps": self.time_control,
-             "Commentaire": self.description
-             })
-        return self.t_table.update(
-            {'id': tournament_id}, doc_ids=[tournament_id])[0]
-
     def generate_rounds(self):
         rounds_ids = []
         for i in range(self.num_of_rounds):
             r = Round.Round()
             r.generate_matches(self.players)
+            # r.score(self.players)
             round_id = r.create_round(i+1, self.players)
             rounds_ids.append(round_id)
         return rounds_ids
- 
+
     def add_tournament_and_players(self, tournament_dict, players_list):
         """Combine les informations sur les tournois et les joueurs"""
         self.total_tournament = tournament_dict
@@ -76,7 +57,6 @@ class Tournament:
         tournament_table = jtournament.table("tournaments")
         tournament_table.insert(tournament_dict)
         return tournament_table
-
 
     def get_length_db(self):
         """Retourne le numéro d'entrée dans la base de données json"""
@@ -118,7 +98,7 @@ class Tournament:
             all_tournaments.append(one_tournament)
 
         return all_tournaments
-    
+
     def print_tournaments_list(self, all_tournaments):
         """Print the list of all saved tournaments in the database"""
         print(f"Liste de l'ensemble des tournois enregistrés")

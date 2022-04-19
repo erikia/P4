@@ -1,5 +1,5 @@
 from json import JSONEncoder
-import json
+import jsonpickle
 from tinydb import TinyDB
 db = TinyDB('jtournament.json')
 
@@ -37,6 +37,7 @@ class Player:
         players_list: list = []
 
         p1 = Player('Dubois', 'Charles', '05/04/1995', 'Homme', 356, 1, 0, [])
+        # player = jsonpickle.encode(p1)
         player1 = Player.get_serialized_player(p1)
         p2 = Player('Alcor', 'David', '17/12/1945', 'Homme', 287, 2, 0, [])
         player2 = Player.get_serialized_player(p2)
