@@ -32,7 +32,8 @@ class Match:
         return match_list
 
     def create_match(self, players):
-        # match =  self.r_table.in
+        
+        match =  self.r_table.inser
         match_id = self.m_table.insert({
             'Joueur 1': players[0],
             # 'Joueur 1': self.player_1,

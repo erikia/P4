@@ -42,14 +42,22 @@ class Round:
                  }, doc_ids=[self.id])[0]
         return result
 
-    def generate_matches(self, players):
+    def generate_matches_real(self, players):
         matches_ids = []
 
         for i in range(4):
             match_id = Match.Match.get_serialized_match(self, players)
             matches_ids.append(match_id)
         return matches_ids
-    
+
+    def generate_matches(self, players):
+        matches_ids = []
+
+        for i in range(4):
+            match_id = self.pairing_round(players)
+            matches_ids.append(match_id)
+        return matches_ids
+
     def get_serialized_round(self):
         opponents = []
         for pair in self.players_pairs:
@@ -57,7 +65,7 @@ class Round:
                 (
                     pair[0].get_serialized_player(),
                     pair[1].get_serialized_player()
-                 )
+                )
             )
 
         return {
@@ -66,22 +74,22 @@ class Round:
             "Nom": self.name,
             "Debut du match": self.start_time,
             "Fin du match": self.date_time_end,
-            }
+        }
 
-    def pairing_first_round(self, players):
+    def pairing_round(self, players):
         """Associe les joueurs et continue les autres rounds"""
-        first_round = []
+        rounds = []
 
-        match_1 = Match.Match(players[0].name, players[0].name)
-        match_2 = Match.Match(players[0].name, players[0].name)
-        match_3 = Match.Match(players[0].name, players[0].name)
-        match_4 = Match.Match(players[0].name, players[0].name)
-        first_round.append(match_1.tuple_players())
-        first_round.append(match_2.tuple_players())
-        first_round.append(match_3.tuple_players())
-        first_round.append(match_4.tuple_players())
+        match_1 = Match.Match(players[0], players[1])
+        match_2 = Match.Match(players[2], players[3])
+        match_3 = Match.Match(players[4], players[5])
+        match_4 = Match.Match(players[6], players[7])
+        rounds.append(match_1.tuple_players())
+        rounds.append(match_2.tuple_players())
+        rounds.append(match_3.tuple_players())
+        rounds.append(match_4.tuple_players())
 
-        return first_round
+        return rounds
 
     def pairing_other_round(self, players):
         """Associe les joueurs et continue les autres rounds"""
