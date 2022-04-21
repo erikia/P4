@@ -1,5 +1,6 @@
 from Controllers import ApplicationCtrl
 from Controllers import PlayersCtrl
+from Controllers.RoundsCtrl import RoundsCtrl
 from Models import Player, Round
 from Models import Tournament
 from Views import RoundView, TournamentView
@@ -25,10 +26,16 @@ class TournamentCtrl:
         tournamentCtrl.create_rounds()
         tournamentCtrl.group_tournament_and_players()
         tournamentCtrl.group_tournament_and_rounds()
+        # tournamentCtrl.start_match()
         tournamentCtrl.save_format_json()
+
         menu = ApplicationCtrl.ApplicationCtrl()
 
         menu.start()
+
+    def start_match(self):
+        return_score = RoundsCtrl.get_score_rounds(self)
+        return return_score
 
     def tournament_infos():
         """Retourne un dictionnaire des informations du tournois """
@@ -59,11 +66,6 @@ class TournamentCtrl:
         self.round_dict = self.tournament.generate_rounds()
         return self.round_dict
 
-    def call_matches(self):
-        """Retourne les rounds sur le tournoi"""
-        self.matches_dict = self.rounds.generate_matches()
-        return self.matches_dict
-
     def group_tournament_and_players(self):
         """Retourne la liste des joueurs pour les regrouper ensemble dans un tournoi"""
         tournament_infos = self.tournament
@@ -89,16 +91,6 @@ class TournamentCtrl:
         """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
         save = self.tournament
         save.save_format_json(self.total_tournament)
-
-    def round_players(self, tournament_number):
-        """Créer l'objet des rounds en récupérant les joueurs"""
-        players = self.tournament.get_players(tournament_number)
-        self.round_players = []
-        for i in range(8):
-            one_player = Player.Player(players[i])
-            player_i = one_player.match_player()
-            self.round_players.append(player_i)
-        return self.round_players
 
     def sort_players_by_ranking(self, players):
         srtd_players = sorted(players, key=lambda x: x.ranking, reverse=True)

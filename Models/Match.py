@@ -18,49 +18,16 @@ class Match:
         self.winner = ""
         self.id = ''
 
-    def return_players_opponents(self):
-        """Associe les joueurs lors d'un match"""
-        match = (self.player_1, self.player_2)
-        return match
-
     def tuple_players(self):
         """Retourne une tuple d'un match contenant les joueurs et leurs scores """
         match_list = [self.player_1, self.player_score_1], [
             self.player_2, self.player_score_2]
         return match_list
 
-    def create_match(self):
-        match = self.m_table.insert({
-            'Joueur 1': self.player_1,
-            'Score du Joueur 1': self.player_score_1,
-            'Joueur 2': self.player_2,
-            'Score du Joueur 2': self.player_score_2
-        })
-        return match
-
-    def players(self):
-        players = []
-        players.append(Player.get_player_from_id(self.player_1))
-        players.append(Player.get_player_from_id(self.player_2))
-        return players
-
     def score_players(self, players):
         """Retourne la vue pour affichier le score du match"""
         self.score = self.return_match_result(players)
         return self.score
-
-    def save_matches(self):
-        if self.id == '':
-            result = self.create_match()
-        else:
-            result = self.m_table.update(
-                {'Joueur 1': self.player_1.name,
-                 'Score du Joueur 1': self.player_score_1,
-                 'Joueur 2': self.player_2.name,
-                 'Score du Joueur 2': self.player_score_2,
-                 'id': self.id
-                 }, doc_ids=[self.id])[0]
-        return result
 
     def return_match_result(self):
         """Retourne le match jouée et permet de rentrez les scores """
@@ -104,3 +71,14 @@ class Match:
             "score_player2": self.player_score_2,
             "winner": self.winner,
         }
+
+    def save_matches(self):
+        result = self.m_table.update(
+            {"player1": self.player_1,
+             "score_player1": self.player_score_1,
+             "player2": self.player_2,
+             "score_player2": self.player_score_2,
+             "winner": self.winner,
+             'id': self.id
+             }, doc_ids=[self.id])[0]
+        return result

@@ -34,7 +34,7 @@ class Round:
         matches = []
 
         for i in range(4):
-            match= Match.Match.get_serialized_match(self, players)
+            match = Match.Match.get_serialized_match(self, players)
             matches.append(match)
         return matches
 
@@ -91,17 +91,3 @@ class Round:
 
     def start_round(self):
         self.date_time_start = self.date_time_now()
-
-
-
-
-
-    # def create_round(self, round_num, players):
-    #     self.name = "Rounds".format(round_num)
-    #     self.matches = self.generate_matches(players)
-    #     round_id = self.r_table.insert({
-    #         "Matches": self.matches,
-    #         "Nom": self.name,
-    #         "Debut du match": self.start_time,
-    #         "Fin du match": self.date_time_end})
-    #     return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
