@@ -16,21 +16,20 @@ class Tournament:
         self.location = location
         self.date = date
         self.num_of_rounds = num_of_rounds
-        self.rounds = []
+        self.rounds = rounds
         self.players = Player.Player.get_players_list()
         self.time_control = time_control
         self.description = description
         self.id = ''
 
     def generate_rounds(self):
-        rounds_ids = []
+        rounds = []
         for i in range(self.num_of_rounds):
             r = Round.Round()
             r.generate_matches(self.players)
-            # r.score(self.players)
-            round_id = r.create_round(i+1, self.players)
-            rounds_ids.append(round_id)
-        return rounds_ids
+            create_rounds = r.create_round(i+1, self.players)
+            rounds.append(create_rounds)
+        return rounds
 
     def add_tournament_and_players(self, tournament_dict, players_list):
         """Combine les informations sur les tournois et les joueurs"""
@@ -100,7 +99,7 @@ class Tournament:
         return all_tournaments
 
     def print_tournaments_list(self, all_tournaments):
-        """Print the list of all saved tournaments in the database"""
+        """docstring"""
         print(f"Liste de l'ensemble des tournois enregistrés")
         print("")
         for tournament in all_tournaments:

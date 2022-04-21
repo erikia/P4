@@ -13,22 +13,14 @@ class PlayersView:
             player = {}
             print(
                 "Veuillez entrer les informations du numéro de joueur " + str(i + 1) + ":")
-            # player["Nom de famille", "Prénom",
-            #        "Date de naissance", "Sexe", "Rang"] = CreatePlayer().display_menu()
-
-            player["Nom"] = PlayersView().display_menu_name()
-            player["First"] = PlayersView().display_menu_first_name()
+            player["Nom de famille"] = PlayersView().display_menu_name()
+            player["Prénom"] = PlayersView().display_menu_first_name()
             player["Date de naissance"] = PlayersView().display_menu_date()
             player["Sexe"] = PlayersView().display_menu_gender()
             player["Rang"] = PlayersView().display_menu_rank()
             player["Numéro associé"] = int(i + 1)
             player["Score"] = 0
             player["Adversaires"] = []
-            print("\nLe Joueur:")
-            print(player["Nom"])
-            # print(player["Nom de famille"] + player["Prénom"])
-            print(player["Prénom"])
-            print("est créé.\n")
 
             list_players_informations.append(player)
             print("")

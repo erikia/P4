@@ -29,19 +29,14 @@ class Match:
             self.player_2, self.player_score_2]
         return match_list
 
-    def create_match(self, players):
-        
-        match =  self.r_table.inser
-        match_id = self.m_table.insert({
-            'Joueur 1': players[0],
-            # 'Joueur 1': self.player_1,
+    def create_match(self):
+        match = self.m_table.insert({
+            'Joueur 1': self.player_1,
             'Score du Joueur 1': self.player_score_1,
-            'Joueur 2':  players[1],
-            # 'Joueur 2': self.player_2,
+            'Joueur 2': self.player_2,
             'Score du Joueur 2': self.player_score_2
         })
-        return match_id
-        # return self.m_table.update({'id': match_id}, doc_ids=[match_id])[0]
+        return match
 
     def players(self):
         players = []
@@ -54,7 +49,7 @@ class Match:
         self.score = self.return_match_result(players)
         return self.score
 
-    def save_match(self):
+    def save_matches(self):
         if self.id == '':
             result = self.create_match()
         else:
@@ -109,5 +104,3 @@ class Match:
             "score_player2": self.player_score_2,
             "winner": self.winner,
         }
-
-
