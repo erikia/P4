@@ -1,8 +1,8 @@
 from datetime import datetime
 from Models import Match
-from tinydb import JSONStorage, TinyDB, Query
-from tinydb_serialization import SerializationMiddleware
-from tinydb_serialization.serializers import DateTimeSerializer
+from tinydb import TinyDB
+
+from Views import RoundView
 db = TinyDB('jtournament.json')
 
 
@@ -18,17 +18,29 @@ class Round:
         self.date_time_end = date_time_end
         self.id = ''
 
+    # def create_round(self, round_num, players):
+    #     self.name = "Rounds".format(round_num)
+    #     self.matches = self.generate_matches(players)
+    #     self.start_time = self.date_time_now()
+    #     self.date_time_end = self.date_time_now()
+    #     rounds = {
+    #         "Matches": self.matches,
+    #         "Nom": self.name,
+    #         "Debut du match": self.start_time,
+    #         "Fin du match": self.date_time_end}
+    #     return rounds
+
     def create_round(self, round_num, players):
         self.name = "Rounds".format(round_num)
         self.matches = self.generate_matches(players)
         self.start_time = self.date_time_now()
         self.date_time_end = self.date_time_now()
-        rounds = {
+        round_id = self.r_table.insert({
             "Matches": self.matches,
             "Nom": self.name,
             "Debut du match": self.start_time,
-            "Fin du match": self.date_time_end}
-        return rounds
+            "Fin du match": self.date_time_end})
+        return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
 
     def generate_matches_OlD(self, players):
         matches = []
@@ -41,9 +53,9 @@ class Round:
     def generate_matches(self, players):
         matches = []
 
-        for i in range(4):
-            match = self.pairing_round(players)
-            matches.append(match)
+        # for i in range(4):
+        match = self.pairing_round(players)
+        matches.append(match)
         return matches
 
     def score(self, players):
@@ -54,6 +66,7 @@ class Round:
 
     def pairing_round(self, players):
         """Associe les joueurs et continue les autres rounds"""
+        match_list = []
         rounds = []
 
         # print(players)
@@ -63,6 +76,7 @@ class Round:
         match_4 = Match.Match(players[6], players[7])
 
         # Créations des matchs et des scores pour ensuite les sauvegarder dans la liste des rounds
+
         m1 = match_1.return_match_result()
         m2 = match_2.return_match_result()
         m3 = match_3.return_match_result()

@@ -33,17 +33,22 @@ class Match:
         """Retourne le match jouée et permet de rentrez les scores """
         print("\nLes résultats du match peuvent être soumis : \n")
         winner = PlayerView.PlayersView.verify_user_input(self,
-                                                          msg_display=f"{self.player_1}) VS " +
-                                                          f"{self.player_2})\n"
+                                                          msg_display=f"{self.player_1['Nom']} VS " +
+                                                          f"{self.player_2['Nom']}\n"
                                                           f"Qui est est le gagnant ?\n"
-                                                          f"0 - {self.player_1})\n"
-                                                          f"1 - {self.player_2})\n"
+                                                          f"0 - {self.player_1['Nom']}\n"
+                                                          f"1 - {self.player_2['Nom']}\n"
                                                           f"2 - Égalité\n> ",
                                                           msg_error="Veuillez entrer 0, 1 ou 2.",
                                                           value_type="selection",
-                                                          assertions=[
+                                                          input=[
                                                               "0", "1", "2"]
                                                           )
+        # winner = print(f"{self.player_1.name} VS " + f"{self.player_2.name}\n"
+        #     f"Qui est est le gagnant ?\n"
+        #     f"0 - {self.player_1.name}\n"
+        #     f"1 - {self.player_2.name}\n"
+        #     f"2 - Égalité\n> ")
 
         if winner == "0":
             self.winner = self.player_1
@@ -61,24 +66,16 @@ class Match:
         else:
             print(
                 f"Merci d'entrer: 1, 2 ou 0 dans la console")
-            self.winner()
+        
+        self.player_1.score += self.player_score_1
+        self.player_2.score += self.player_score_2
+
 
     def save_match(self):
         return {
-            "player1": self.player_1,
+            "player_1": self.player_1.get_serialized_player(),
             "score_player1": self.player_score_1,
-            "player2": self.player_2,
+            "player_2": self.player_2.get_serialized_player(),
             "score_player2": self.player_score_2,
             "winner": self.winner,
         }
-
-    def save_matches(self):
-        result = self.m_table.update(
-            {"player1": self.player_1,
-             "score_player1": self.player_score_1,
-             "player2": self.player_2,
-             "score_player2": self.player_score_2,
-             "winner": self.winner,
-             'id': self.id
-             }, doc_ids=[self.id])[0]
-        return result

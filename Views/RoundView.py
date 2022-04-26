@@ -46,3 +46,22 @@ class RoundView:
     def ask_end_round(self):
         """Demande à l'utilisateur d'arreter le round"""
         input("\nAppuyez sur ENTREE pour ternimner le round\n")
+
+    def ask_result(self, player):
+        """Docstring"""
+        ask_result = input(f"Resultat:  {player} :  ")
+
+        if ask_result == "victoire" or ask_result == "defaite" or ask_result == "égalité":
+            if ask_result == "victoire":
+                self.score = 1.0
+            elif ask_result == "defaite":
+                self.score = 0.0
+            elif ask_result == "égalité":
+                self.score = 0.5
+        else:
+            print(
+                "Merci d'entrer: victoire, defaite ou égalité dans la console"
+            )
+            self.ask_result(player)
+
+        return self.score
