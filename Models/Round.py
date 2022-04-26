@@ -1,5 +1,6 @@
 from datetime import datetime
 from Models import Match
+# from Models.Match import Match
 from tinydb import TinyDB
 
 from Views import RoundView
@@ -37,6 +38,7 @@ class Round:
         self.date_time_end = self.date_time_now()
         round_id = self.r_table.insert({
             "Matches": self.matches,
+            # "Matches": self.matchs.save_match(),
             "Nom": self.name,
             "Debut du match": self.start_time,
             "Fin du match": self.date_time_end})
@@ -69,7 +71,6 @@ class Round:
         match_list = []
         rounds = []
 
-        # print(players)
         match_1 = Match.Match(players[0], players[1])
         match_2 = Match.Match(players[2], players[3])
         match_3 = Match.Match(players[4], players[5])

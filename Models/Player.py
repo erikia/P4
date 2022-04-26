@@ -80,32 +80,32 @@ class Player:
         return players_list
 
     # def get_players_list():
-        players_list: list = []
+    #     players_list: list = []
 
-        player1 = Player('Dubois', 'Charles', '05/04/1995',
-                         'Homme', 356, 1, 0, [])
-        player2 = Player('Alcor', 'David', '17/12/1945',
-                         'Homme', 287, 2, 0, [])
-        player3 = Player('Garry', 'Kasparov', '1/06/1967',
-                         'Homme', 593, 3, 0, [])
-        player4 = Player('Judit', 'Polgar', '1/06/1967',
-                         'Femme', 407, 4, 0, [])
-        player5 = Player('Fabiano', 'Caruana', '15/11/1978',
-                         'Homme', 57, 5, 0, [])
-        player6 = Player('Anish', 'Giri', '26/03/2000', 'Homme', 68, 6, 0, [])
-        player7 = Player('Boris', 'Spassky', '18/01/1935',
-                         'Homme', 708, 7, 0, [])
-        player8 = Player('Hikaru', 'Nakamura', '28/08/1985',
-                         'Homme', 84, 8, 0, [])
-        players_list.append(player1)
-        players_list.append(player2)
-        players_list.append(player3)
-        players_list.append(player4)
-        players_list.append(player5)
-        players_list.append(player6)
-        players_list.append(player7)
-        players_list.append(player8)
-        return players_list
+    #     player1 = Player('Dubois', 'Charles', '05/04/1995',
+    #                      'Homme', 356, 1, 0, [])
+    #     player2 = Player('Alcor', 'David', '17/12/1945',
+    #                      'Homme', 287, 2, 0, [])
+    #     player3 = Player('Garry', 'Kasparov', '1/06/1967',
+    #                      'Homme', 593, 3, 0, [])
+    #     player4 = Player('Judit', 'Polgar', '1/06/1967',
+    #                      'Femme', 407, 4, 0, [])
+    #     player5 = Player('Fabiano', 'Caruana', '15/11/1978',
+    #                      'Homme', 57, 5, 0, [])
+    #     player6 = Player('Anish', 'Giri', '26/03/2000', 'Homme', 68, 6, 0, [])
+    #     player7 = Player('Boris', 'Spassky', '18/01/1935',
+    #                      'Homme', 708, 7, 0, [])
+    #     player8 = Player('Hikaru', 'Nakamura', '28/08/1985',
+    #                      'Homme', 84, 8, 0, [])
+    #     players_list.append(player1)
+    #     players_list.append(player2)
+    #     players_list.append(player3)
+    #     players_list.append(player4)
+    #     players_list.append(player5)
+    #     players_list.append(player6)
+    #     players_list.append(player7)
+    #     players_list.append(player8)
+    #     return players_list
 
 
     def match_player(self):

@@ -41,9 +41,11 @@ class Match:
                                                           f"2 - Égalité\n> ",
                                                           msg_error="Veuillez entrer 0, 1 ou 2.",
                                                           value_type="selection",
-                                                          input=[
+                                                          assertions=[
                                                               "0", "1", "2"]
                                                           )
+
+
         # winner = print(f"{self.player_1.name} VS " + f"{self.player_2.name}\n"
         #     f"Qui est est le gagnant ?\n"
         #     f"0 - {self.player_1.name}\n"
@@ -67,8 +69,8 @@ class Match:
             print(
                 f"Merci d'entrer: 1, 2 ou 0 dans la console")
         
-        self.player_1.score += self.player_score_1
-        self.player_2.score += self.player_score_2
+        self.player_1['Score'] += self.player_score_1
+        self.player_2['Score'] += self.player_score_2
 
 
     def save_match(self):

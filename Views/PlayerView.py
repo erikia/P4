@@ -27,7 +27,7 @@ class PlayersView:
 
         return list_players_informations
 
-    def verify_user_input(self, msg_display, msg_error, value_type, input=None, default_value=None):
+    def verify_user_input(self, msg_display, msg_error, value_type, assertions=None, default_value=None):
         """Vérifie les entrées des utilisateurs sur les joueurs et retourne les messages d'erreurs"""
 
         while True:
@@ -64,7 +64,7 @@ class PlayersView:
                     print(msg_error)
                     continue
             elif value_type == "selection":
-                if value in input:
+                if value in assertions:
                     return value
                 else:
                     print(msg_error)
