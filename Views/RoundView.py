@@ -1,7 +1,4 @@
-from Models import Round
-from Views import PlayerView
 from tinydb import TinyDB
-from Models import Match
 db = TinyDB('jtournament.json')
 
 
@@ -47,21 +44,21 @@ class RoundView:
         """Demande à l'utilisateur d'arreter le round"""
         input("\nAppuyez sur ENTREE pour ternimner le round\n")
 
-    def ask_result(self, player):
-        """Docstring"""
-        ask_result = input(f"Resultat:  {player} :  ")
+    def return_result_match(self, player):
+        """Retourne le resultats des scores pour le match"""
+        result = input(f"Resultat:  {player} :  ")
 
-        if ask_result == "victoire" or ask_result == "defaite" or ask_result == "égalité":
-            if ask_result == "victoire":
+        if result == "victoire" or result == "defaite" or result == "égalité":
+            if result == "victoire":
                 self.score = 1.0
-            elif ask_result == "defaite":
+            elif result == "defaite":
                 self.score = 0.0
-            elif ask_result == "égalité":
+            elif result == "égalité":
                 self.score = 0.5
         else:
             print(
                 "Merci d'entrer: victoire, defaite ou égalité dans la console"
             )
-            self.ask_result(player)
+            self.result(player)
 
         return self.score

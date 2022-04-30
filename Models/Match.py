@@ -45,13 +45,6 @@ class Match:
                                                               "0", "1", "2"]
                                                           )
 
-
-        # winner = print(f"{self.player_1.name} VS " + f"{self.player_2.name}\n"
-        #     f"Qui est est le gagnant ?\n"
-        #     f"0 - {self.player_1.name}\n"
-        #     f"1 - {self.player_2.name}\n"
-        #     f"2 - Égalité\n> ")
-
         if winner == "0":
             self.winner = self.player_1
             self.player_score_1 += 1

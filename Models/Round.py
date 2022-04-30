@@ -19,18 +19,6 @@ class Round:
         self.date_time_end = date_time_end
         self.id = ''
 
-    # def create_round(self, round_num, players):
-    #     self.name = "Rounds".format(round_num)
-    #     self.matches = self.generate_matches(players)
-    #     self.start_time = self.date_time_now()
-    #     self.date_time_end = self.date_time_now()
-    #     rounds = {
-    #         "Matches": self.matches,
-    #         "Nom": self.name,
-    #         "Debut du match": self.start_time,
-    #         "Fin du match": self.date_time_end}
-    #     return rounds
-
     def create_round(self, round_num, players):
         self.name = "Rounds".format(round_num)
         self.matches = self.generate_matches(players)
@@ -44,13 +32,6 @@ class Round:
             "Fin du match": self.date_time_end})
         return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
 
-    def generate_matches_OlD(self, players):
-        matches = []
-
-        for i in range(4):
-            match = Match.Match.get_serialized_match(self, players)
-            matches.append(match)
-        return matches
 
     def generate_matches(self, players):
         matches = []
@@ -60,11 +41,6 @@ class Round:
         matches.append(match)
         return matches
 
-    def score(self, players):
-        match = self.generate_matches(players)
-        score = Match.Match.return_match_result(match)
-
-        return score
 
     def pairing_round(self, players):
         """Associe les joueurs et continue les autres rounds"""

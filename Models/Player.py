@@ -20,19 +20,6 @@ class Player:
         self.opponents = opponents
         self.id = ''
 
-    def create_player(self):
-        player = {
-            "Nom": self.name,
-            "Prénom": self.first_name,
-            "Date de naissance": self.date,
-            "Sexe": self.gender,
-            "Rang": self.ranking,
-            "Numéro associé": self.pairing_nb,
-            "Score": self.score,
-            "Adversaires": self.opponents
-        }
-        return player
-
     def get_serialized_player(self):
         serialized_player = {
             "Nom": self.name,
@@ -50,6 +37,7 @@ class Player:
         return self.p_table.insert(self.get_serialized_player())
 
     def get_players_list():
+        """Crée un objet Player et le serialise pour le mettre dans la liste des joueurs"""
         players_list: list = []
 
         p1 = Player('Dubois', 'Charles', '05/04/1995', 'Homme', 356, 1, 0, [])
@@ -80,6 +68,8 @@ class Player:
         return players_list
 
     # def get_players_list():
+        """Crée un objet Player pour le mettre dans la liste des joueurs"""
+
     #     players_list: list = []
 
     #     player1 = Player('Dubois', 'Charles', '05/04/1995',
@@ -115,7 +105,8 @@ class Player:
 
         return match_player
 
-    def read_players(self):
+    def read_players_db(self):
+        """Retourne la liste de tous les joueurs dans la base de donnée"""
         all_players = []
         players_from_db = self.p_table.all()
         for pl in players_from_db:
