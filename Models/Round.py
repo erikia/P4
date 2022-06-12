@@ -1,10 +1,7 @@
+from Controllers import Connection
 from datetime import datetime
 from Models import Match
-# from Models.Match import Match
-from tinydb import TinyDB
-
-from Views import RoundView
-db = TinyDB('jtournament.json')
+db = ('db.sqlite')
 
 
 class Round:
@@ -12,7 +9,7 @@ class Round:
 
     def __init__(self, matches=None, name='', start_time='',
                  date_time_end=''):
-        self.r_table = db.table('Rounds')
+        self.r_table = Connection.db_rounds
         self.matches = matches
         self.name = name
         self.start_time = start_time
@@ -26,12 +23,10 @@ class Round:
         self.date_time_end = self.date_time_now()
         round_id = self.r_table.insert({
             "Matches": self.matches,
-            # "Matches": self.matchs.save_match(),
             "Nom": self.name,
             "Debut du match": self.start_time,
             "Fin du match": self.date_time_end})
         return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
-
 
     def generate_matches(self, players):
         matches = []
@@ -40,7 +35,6 @@ class Round:
         match = self.pairing_round(players)
         matches.append(match)
         return matches
-
 
     def pairing_round(self, players):
         """Associe les joueurs et continue les autres rounds"""

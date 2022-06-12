@@ -1,9 +1,7 @@
-from tinydb import TinyDB
-from Controllers import PlayersCtrl
-from Controllers import TournamentCtrl
+from sqlite3 import connect
+from Controllers import Connection
 from Models import Player, Round
-from tinydb import TinyDB
-db = TinyDB('jtournament.json')
+db = ('db.sqlite')
 
 
 class Tournament:
@@ -11,7 +9,8 @@ class Tournament:
 
     def __init__(self, name="", location="", date="", num_of_rounds=4, rounds=None, players=None,
                  time_control="", description=""):
-        self.t_table = db.table('tournaments')
+        # self.t_table = db('SELECT * FROM tournaments')
+        self.t_table = Connection.db_tournaments
         self.name = name
         self.location = location
         self.date = date
@@ -49,6 +48,15 @@ class Tournament:
         self.total_tournament["Matchs"] = matchs_list
         return self.total_tournament
 
+    def save_format_sqlite(self, tournament_dict):
+        """Sauvegarde les informations sur le tournoi et les joueurs en sqlite"""
+        # tournament_table = Connection.cursor.executemany("""UPDATE tournaments SET ? = :?
+        #                 WHERE ?? = :?? AND ?? = :??""", tournament_dict)
+        save_table = Connection.cursor.executemany(
+            "INSERT OR IGNORE INTO tournaments VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?)", tournament_dict)
+        tournament_table = save_table.connection.commit()
+        return tournament_table
+
     def save_format_json(self, tournament_dict):
         """Sauvegarde les informations sur le tournoi et les joueurs en json"""
         jtournament = TinyDB("jtournament.json",
@@ -56,52 +64,3 @@ class Tournament:
         tournament_table = jtournament.table("tournaments")
         tournament_table.insert(tournament_dict)
         return tournament_table
-
-    def get_length_db(self):
-        """Retourne le numéro d'entrée dans la base de données json"""
-        jtournament = TinyDB("jtournament.json",
-                             ensure_ascii=False, encoding="utf8", indent=4)
-        tournament_table = jtournament.table("tournaments")
-        database_length = len(tournament_table)
-        return database_length
-
-    def get_players(self, tournament_number):
-        """Retourne tous les joueurs d'un tournoi par son identifiant"""
-        jtournament = TinyDB("jtournament.json",
-                             ensure_ascii=False, encoding="utf8", indent=4)
-        tournament_table = jtournament.table("tournaments")
-        tournament_id = None
-
-        if tournament_number == 0:
-            tournament_id = len(tournament_table)
-        else:
-            tournament_id = tournament_number
-
-        players = tournament_table.get(doc_id=tournament_id)["Players"]
-        return players
-
-    def get_total_tournaments(self):
-        """Récupére tous les tournois enregistrés dans la base de données json"""
-        jtournament = TinyDB("jtournament.json",
-                             ensure_ascii=False, encoding="utf8", indent=4)
-        tournament_table = jtournament.table("tournaments")
-        total_table = tournament_table.all()
-        all_tournaments = []
-
-        for tournament in total_table:
-            one_tournament = {}
-            one_tournament["ID"] = tournament.doc_id
-            one_tournament["Nom"] = tournament["Nom/ID du tournois"]
-            one_tournament["Date"] = tournament["Les dates du tournois"]
-            one_tournament["Adresse"] = tournament["Adresse du tournois"]
-            all_tournaments.append(one_tournament)
-
-        return all_tournaments
-
-    def print_tournaments_list(self, all_tournaments):
-        """docstring"""
-        print(f"Liste de l'ensemble des tournois enregistrés")
-        print("")
-        for tournament in all_tournaments:
-            print(tournament)
-        print("")

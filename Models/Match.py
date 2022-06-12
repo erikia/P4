@@ -1,16 +1,13 @@
-from Controllers import PlayersCtrl
-from Models import Player
-from tinydb import TinyDB
-
-from Views import PlayerView, RoundView
-db = TinyDB('jtournament.json')
+from Controllers import Connection
+from Views import PlayerView
+db = ('db.sqlite')
 
 
 class Match:
     """Class qui instancie les matchs"""
 
     def __init__(self, player_1, player_2):
-        self.m_table = db.table('Matches')
+        self.m_table = Connection.db_matchs
         self.player_1 = player_1
         self.player_2 = player_2
         self.player_score_1 = 0
@@ -61,16 +58,21 @@ class Match:
         else:
             print(
                 f"Merci d'entrer: 1, 2 ou 0 dans la console")
-        
+
         self.player_1['Score'] += self.player_score_1
         self.player_2['Score'] += self.player_score_2
 
-
     def save_match(self):
         return {
-            "player_1": self.player_1.get_serialized_player(),
+            "player_1": self.player_1,
             "score_player1": self.player_score_1,
-            "player_2": self.player_2.get_serialized_player(),
+            "player_2": self.player_2,
             "score_player2": self.player_score_2,
             "winner": self.winner,
         }
+
+    def save_match(players, score):
+        with Connection:
+            cursor.execute("""UPDATE players SET score = :score
+                        WHERE Joueur_1 = :player AND player = :Joueur_2""",
+                           {'Joueur_1': players.first, 'Joueur_2': players.last, 'pay': score})

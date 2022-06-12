@@ -1,6 +1,5 @@
 from Controllers import ApplicationCtrl
 from Controllers import PlayersCtrl
-from Controllers.RoundsCtrl import RoundsCtrl
 from Models import Player, Round
 from Models import Tournament
 from Views import RoundView, TournamentView
@@ -26,16 +25,13 @@ class TournamentCtrl:
         tournamentCtrl.create_rounds()
         tournamentCtrl.group_tournament_and_players()
         tournamentCtrl.group_tournament_and_rounds()
-        # tournamentCtrl.start_match()
-        tournamentCtrl.save_format_json()
+        # tournamentCtrl.save_format_json()
+        TournamentCtrl.save_format_sqlite()
 
         menu = ApplicationCtrl.ApplicationCtrl()
 
         menu.start()
 
-    def start_match(self):
-        return_score = RoundsCtrl.get_score_rounds(self)
-        return return_score
 
     def tournament_infos():
         """Retourne un dictionnaire des informations du tournois """
@@ -91,6 +87,12 @@ class TournamentCtrl:
         """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
         save = self.tournament
         save.save_format_json(self.total_tournament)
+    
+    def save_format_sqlite(self):
+        """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
+        save = self.tournament
+        save.save_format_sqlite(self.total_tournament)
+
 
     def sort_players_by_ranking(self, players):
         srtd_players = sorted(players, key=lambda x: x.ranking, reverse=True)
@@ -99,4 +101,4 @@ class TournamentCtrl:
     def resumeTournament(self):
         """Reprend un ancien tournoi en cours"""
         lenght = self.tournament
-        lenght_db = lenght.get_length_db()
+        # lenght_db = lenght.get_length_db()
