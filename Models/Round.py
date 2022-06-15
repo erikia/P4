@@ -41,10 +41,15 @@ class Round:
         match_list = []
         rounds = []
 
-        match_1 = Match.Match(players[0], players[1])
-        match_2 = Match.Match(players[2], players[3])
-        match_3 = Match.Match(players[4], players[5])
-        match_4 = Match.Match(players[6], players[7])
+        # match_1 = Match.Match(players[0], players[1])
+        # match_2 = Match.Match(players[2], players[3])
+        # match_3 = Match.Match(players[4], players[5])
+        # match_4 = Match.Match(players[6], players[7])
+
+        match_1 = Match.Match(players.fetchall()[0], players.fetchall()[1])
+        match_2 = Match.Match(players.fetchall()[2], players.fetchall()[3])
+        match_3 = Match.Match(players.fetchall()[4], players.fetchall()[5])
+        match_4 = Match.Match(players.fetchall()[6], players.fetchall()[7])
 
         # Créations des matchs et des scores pour ensuite les sauvegarder dans la liste des rounds
 

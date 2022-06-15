@@ -16,7 +16,7 @@ class Tournament:
         self.date = date
         self.num_of_rounds = num_of_rounds
         self.rounds = rounds
-        self.players = Player.Player.get_players_list()
+        self.players = Connection.db_players
         self.time_control = time_control
         self.description = description
         self.id = ''

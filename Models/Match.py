@@ -72,7 +72,12 @@ class Match:
         }
 
     def save_match(players, score):
-        with Connection:
-            cursor.execute("""UPDATE players SET score = :score
-                        WHERE Joueur_1 = :player AND player = :Joueur_2""",
-                           {'Joueur_1': players.first, 'Joueur_2': players.last, 'pay': score})
+        # with Connection:
+        #     cursor.execute("""UPDATE players SET score = :score
+        #                 WHERE Joueur_1 = :player AND player = :Joueur_2""",
+        #                    {'Joueur_1': players.first, 'Joueur_2': players.last, 'pay': score})
+
+        save_table = Connection.cursor.executemany(
+            "INSERT OR IGNORE INTO macthes VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?)", score)
+        match_table = save_table.connection.commit()
+        return match_table
