@@ -20,6 +20,7 @@ class Tournament:
         self.time_control = time_control
         self.description = description
         self.id = ''
+        # print(self.players)
 
     def generate_rounds(self):
         rounds = []
@@ -57,10 +58,10 @@ class Tournament:
         tournament_table = save_table.connection.commit()
         return tournament_table
 
-    def save_format_json(self, tournament_dict):
-        """Sauvegarde les informations sur le tournoi et les joueurs en json"""
-        jtournament = TinyDB("jtournament.json",
-                             ensure_ascii=False, encoding="utf8", indent=4)
-        tournament_table = jtournament.table("tournaments")
-        tournament_table.insert(tournament_dict)
-        return tournament_table
+    # def save_format_json(self, tournament_dict):
+    #     """Sauvegarde les informations sur le tournoi et les joueurs en json"""
+    #     jtournament = TinyDB("jtournament.json",
+    #                          ensure_ascii=False, encoding="utf8", indent=4)
+    #     tournament_table = jtournament.table("tournaments")
+    #     tournament_table.insert(tournament_dict)
+    #     return tournament_table

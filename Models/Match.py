@@ -30,11 +30,11 @@ class Match:
         """Retourne le match jouée et permet de rentrez les scores """
         print("\nLes résultats du match peuvent être soumis : \n")
         winner = PlayerView.PlayersView.verify_user_input(self,
-                                                          msg_display=f"{self.player_1['Nom']} VS " +
-                                                          f"{self.player_2['Nom']}\n"
+                                                          msg_display=f"{self.player_1[1]} VS " +
+                                                          f"{self.player_2[1]}\n"
                                                           f"Qui est est le gagnant ?\n"
-                                                          f"0 - {self.player_1['Nom']}\n"
-                                                          f"1 - {self.player_2['Nom']}\n"
+                                                          f"0 - {self.player_1[1]}\n"
+                                                          f"1 - {self.player_2[1]}\n"
                                                           f"2 - Égalité\n> ",
                                                           msg_error="Veuillez entrer 0, 1 ou 2.",
                                                           value_type="selection",
@@ -59,25 +59,21 @@ class Match:
             print(
                 f"Merci d'entrer: 1, 2 ou 0 dans la console")
 
-        self.player_1['Score'] += self.player_score_1
-        self.player_2['Score'] += self.player_score_2
+        # self.player_1[7] += self.player_score_1
+        # self.player_2[7] += self.player_score_2
 
     def save_match(self):
-        return {
+        total_matches = {
             "player_1": self.player_1,
             "score_player1": self.player_score_1,
             "player_2": self.player_2,
             "score_player2": self.player_score_2,
             "winner": self.winner,
         }
+        return Match.save_db(total_matches)
 
-    def save_match(players, score):
-        # with Connection:
-        #     cursor.execute("""UPDATE players SET score = :score
-        #                 WHERE Joueur_1 = :player AND player = :Joueur_2""",
-        #                    {'Joueur_1': players.first, 'Joueur_2': players.last, 'pay': score})
-
+    def save_db(score):
         save_table = Connection.cursor.executemany(
-            "INSERT OR IGNORE INTO macthes VALUES( ?, ?, ?, ?, ?, ?, ?, ?, ?)", score)
+            "UPDATE OR IGNORE INTO macthes VALUES( ?, ?, ?, ?, ?)", score)
         match_table = save_table.connection.commit()
         return match_table

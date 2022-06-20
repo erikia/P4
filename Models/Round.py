@@ -21,12 +21,20 @@ class Round:
         self.matches = self.generate_matches(players)
         self.start_time = self.date_time_now()
         self.date_time_end = self.date_time_now()
-        round_id = self.r_table.insert({
+        self.r_table = ({
             "Matches": self.matches,
             "Nom": self.name,
             "Debut du match": self.start_time,
             "Fin du match": self.date_time_end})
-        return self.r_table.update({'id': round_id}, doc_ids=[round_id])[0]
+        # return self.r_table
+        return Round.save_rounds(self.r_table)
+
+    def save_rounds(rounds):
+
+        save_table = Connection.cursor.executemany(
+            "UPDATE OR IGNORE rounds SET matches_id = ? ", (rounds,))
+        rounds_table = save_table.connection.commit()
+        return rounds_table
 
     def generate_matches(self, players):
         matches = []
@@ -41,15 +49,10 @@ class Round:
         match_list = []
         rounds = []
 
-        # match_1 = Match.Match(players[0], players[1])
-        # match_2 = Match.Match(players[2], players[3])
-        # match_3 = Match.Match(players[4], players[5])
-        # match_4 = Match.Match(players[6], players[7])
-
-        match_1 = Match.Match(players.fetchall()[0], players.fetchall()[1])
-        match_2 = Match.Match(players.fetchall()[2], players.fetchall()[3])
-        match_3 = Match.Match(players.fetchall()[4], players.fetchall()[5])
-        match_4 = Match.Match(players.fetchall()[6], players.fetchall()[7])
+        match_1 = Match.Match(players[0], players[1])
+        match_2 = Match.Match(players[2], players[3])
+        match_3 = Match.Match(players[4], players[5])
+        match_4 = Match.Match(players[6], players[7])
 
         # Créations des matchs et des scores pour ensuite les sauvegarder dans la liste des rounds
 
@@ -81,3 +84,10 @@ class Round:
 
     def start_round(self):
         self.date_time_start = self.date_time_now()
+
+    # def save_match(r_table, players):
+
+    #     save_table = Connection.cursor.executemany(
+    #         "INSERT OR IGNORE INTO rounds (Name, Matches, Start_time, End_time) VALUES( ?, ?, ?, ?)", r_table)
+    #     match_table = save_table.connection.commit()
+    #     return match_table

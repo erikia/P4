@@ -1,77 +1,58 @@
 from multiprocessing import connection
 import sqlite3
 
-connection = sqlite3.connect('db.sqlite')
-cursor = connection.cursor()
+try:
+    connection = sqlite3.connect('db.sqlite')
+    cursor = connection.cursor()
+
+    db_players = cursor.execute('SELECT * FROM players').fetchall()
+
+    db_tournaments = cursor.execute('SELECT * FROM tournaments').fetchall()
+
+    db_rounds = cursor.execute('SELECT * FROM rounds').fetchall()
+
+    db_matchs = cursor.execute('SELECT * FROM matches').fetchall()
+
+    connection.commit()
+    print("Connexion SQLite ouverte")
+
+except sqlite3.Error as error:
+    print("Erreur lors de la connexion à la base de donnée", error)
 
 
-db_players = cursor.execute('SELECT * FROM players')
-# db_players.fetchall()
-# for row in db_players.fetchall():
-#         print(row)
-# print(row[7])
+def close_db():
+    try:
+        connection.close()
+        print("Connexion SQLite est fermée")
 
-print(db_players.fetchall())
-
-db_tournaments = cursor.execute('SELECT * FROM tournaments')
-db_tournaments.fetchall()
-# print(cursor.fetchall())
-
-db_rounds = cursor.execute('SELECT * FROM rounds')
-db_rounds.fetchall()
-# print(cursor.fetchall())
-
-db_matchs = cursor.execute('SELECT * FROM matches')
-db_matchs.fetchall()
-# print(cursor.fetchall())
-
-
-connection.commit()
-
-# connection.close()
+    except sqlite3.Error as error:
+        print("Erreur lors de la fermeture à la base de donnée", error)
 
 
 # class Connection:
-#     connection = sqlite3.connect('db.sqlite')
-#     cursor = connection.cursor()
 
-#     db_players = cursor.execute('SELECT * FROM players')
-#     db_players.fetchall()
-#     # for row in db_players.fetchall():
-#     #         print(row)
-#     # print(row[7])
+#     def connect_db() :
+#         try:
+#             connection = sqlite3.connect('db.sqlite')
+#             cursor = connection.cursor()
+#             print("Connexion réussie à SQLite")
 
-#     # print(cursor.fetchall())
+#             db_players = cursor.execute('SELECT * FROM players').fetchall()
 
-#     db_tournaments = cursor.execute('SELECT * FROM tournaments')
-#     db_tournaments.fetchall()
-#     # print(cursor.fetchall())
-
-#     db_rounds = cursor.execute('SELECT * FROM rounds')
-#     db_rounds.fetchall()
-#     # print(cursor.fetchall())
-
-#     db_matchs = cursor.execute('SELECT * FROM matches')
-#     db_matchs.fetchall()
-#     # print(cursor.fetchall())
+#             db_tournaments = cursor.execute('SELECT * FROM tournaments').fetchall()
 
 
-#     connection.commit()
-
-#     connection.close()
+#             db_rounds = cursor.execute('SELECT * FROM rounds').fetchall()
 
 
+#             db_matchs = cursor.execute('SELECT * FROM matches').fetchall()
 
+#             connection.commit()
 
-######################
+#         except sqlite3.Error as error:
+#             print("Erreur lors de la connexion à la base de donnée", error)
 
-# Question: 
-# - Fichier connection pour .close()  
-# sqlite3.ProgrammingError: Cannot operate on a closed database.
-
-# -     match_1 = Match.Match(players[0], players[1])
-# =>   
-# match_1 = Match.Match(players.fetchall()[0], players.fetchall()[1])
-# IndexError: list index out of range
-
-# - Sauvegarde save_match()
+#     def close_db():
+#         db = Connection.connect_db().connection
+#         db.close()
+#         print("Connexion SQLite est fermée")

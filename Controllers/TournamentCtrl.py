@@ -32,7 +32,6 @@ class TournamentCtrl:
 
         menu.start()
 
-
     def tournament_infos():
         """Retourne un dictionnaire des informations du tournois """
         tournament_input = TournamentView.TournamentView()
@@ -87,12 +86,17 @@ class TournamentCtrl:
         """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
         save = self.tournament
         save.save_format_json(self.total_tournament)
-    
-    def save_format_sqlite(self):
-        """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
-        save = self.tournament
-        save.save_format_sqlite(self.total_tournament)
 
+    def save_format_sqlite():
+        """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
+        # save = self.tournament
+        # save_sqlite = save.save_format_sqlite(self.total_tournament)
+        # return save_sqlite
+
+        save = Tournament.Tournament()
+        total_t = TournamentCtrl().group_tournament_and_matchs()
+        save_sqlite = save.save_format_sqlite(total_t)
+        return save_sqlite
 
     def sort_players_by_ranking(self, players):
         srtd_players = sorted(players, key=lambda x: x.ranking, reverse=True)

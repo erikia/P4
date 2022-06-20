@@ -9,6 +9,7 @@ class ApplicationCtrl:
 
     def __init__(self):
         self.controller = None
+        self.tournament = Tournament.Tournament()
 
     def start(self):
         """

@@ -1,3 +1,4 @@
+from Controllers import Connection
 from Controllers.ApplicationCtrl import ApplicationCtrl
 
 
@@ -8,5 +9,6 @@ def main():
 
 if __name__ == '__main__':
     main()
-    
+    Connection().close_db()
 
+    
