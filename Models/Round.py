@@ -26,15 +26,7 @@ class Round:
             "Nom": self.name,
             "Debut": self.start_time,
             "Fin": self.date_time_end})
-        # return self.r_table
         return Round.save_rounds(self.r_table)
-
-    # def save_rounds(rounds):
-
-    #     save_table = Connection.cursor.executemany(
-    #         "UPDATE OR IGNORE rounds SET matches_id = ? ", (rounds,))
-    #     rounds_table = save_table.connection.commit()
-    #     return rounds_table
     
     def save_rounds(rounds):
 
@@ -46,16 +38,14 @@ class Round:
     def generate_matches(self, players):
         matches = []
 
-        # for i in range(4):
         match = self.pairing_round(players)
         matches.append(match)
         return matches
 
+
     def pairing_round(self, players):
         """Associe les joueurs et continue les autres rounds"""
-        match_list = []
         rounds = []
-
 
         match_1 = Match.Match(players[0], players[1])
         match_2 = Match.Match(players[2], players[3])
@@ -73,12 +63,6 @@ class Round:
         rounds.append(m2)
         rounds.append(m3)
         rounds.append(m4)
-
-        # Créations des matchs  pour ensuite les sauvegarder dans la liste des rounds
-        # rounds.append(match_1.tuple_players())
-        # rounds.append(match_2.tuple_players())
-        # rounds.append(match_3.tuple_players())
-        # rounds.append(match_4.tuple_players())
 
         return rounds
 

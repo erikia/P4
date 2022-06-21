@@ -22,7 +22,7 @@ class TournamentCtrl:
         tournamentCtrl = TournamentCtrl()
         tournamentCtrl.create_tournament()
         tournamentCtrl.create_players()
-        tournamentCtrl.create_matches()
+        # tournamentCtrl.create_matchs()
         tournamentCtrl.create_rounds()
         # tournamentCtrl.create_matchs()
         # tournamentCtrl.group_tournament_and_players()
@@ -64,10 +64,10 @@ class TournamentCtrl:
         self.round_dict = self.tournament.generate_rounds()
         return self.round_dict
 
-    # def create_matchs(self):
-    #     """Retourne les matchs sur le tournoi"""
-    #     self.round_dict = self.tournament.create_match()
-    #     return self.round_dict
+    def create_matchs(self):
+        """Retourne les matchs sur le tournoi"""
+        self.matches_dict = self.rounds.generate_matches()
+        return self.matches_dict
 
     def group_tournament_and_players(self):
         """Retourne la liste des joueurs pour les regrouper ensemble dans un tournoi"""

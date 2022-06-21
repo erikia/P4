@@ -33,7 +33,6 @@ class ApplicationCtrl:
             rapports = RapportCtrl.RapportCtrl.start_rapport()
             rapports()
         elif self.menu_starting == "quitter":
-            Connection().close_db()
             sys.exit()
         elif self.menu_starting == "supprimer":
             self.clear_terminal()
