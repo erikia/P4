@@ -25,7 +25,7 @@ class Match:
         """Retourne la vue pour affichier le score du match"""
         self.score = self.return_match_result(players)
         return self.score
-
+    
     def return_match_result(self):
         """Retourne le match jouée et permet de rentrez les scores """
         print("\nLes résultats du match peuvent être soumis : \n")
@@ -44,36 +44,47 @@ class Match:
 
         if winner == "0":
             self.winner = self.player_1
+            print(self.winner)
             self.player_score_1 += 1
-            self.save_match
+            print(self.player_score_1)
+            self.create_match
         elif winner == "1":
             self.winner = self.player_2
             self.player_score_2 += 1
-            self.save_match
+            self.create_match
         elif winner == "2":
             self.winner = "Égalité"
             self.player_score_1 += 0.5
             self.player_score_2 += 0.5
-            self.save_match
+            self.create_match
         else:
             print(
                 f"Merci d'entrer: 1, 2 ou 0 dans la console")
 
-        # self.player_1[7] += self.player_score_1
-        # self.player_2[7] += self.player_score_2
+        # self.player_1 += self.player_score_1
+        # self.player_2 += self.player_score_2
 
-    def save_match(self):
-        total_matches = {
+
+    def create_match(self):
+        self.m_table = ({
             "player_1": self.player_1,
             "score_player1": self.player_score_1,
             "player_2": self.player_2,
             "score_player2": self.player_score_2,
             "winner": self.winner,
-        }
-        return Match.save_db(total_matches)
+        })
+        return Match.save_db(self.m_table)
 
-    def save_db(score):
+    # def save_db(match):
+    #     save_table = Connection.cursor.executemany(
+    #         "INSERT OR IGNORE INTO macthes VALUES( NULL, ?, ?, ?, ?)", match)
+    #     match_table = save_table.connection.commit()
+    #     return match_table
+
+    def save_db(match):
+
         save_table = Connection.cursor.executemany(
-            "UPDATE OR IGNORE INTO macthes VALUES( ?, ?, ?, ?, ?)", score)
-        match_table = save_table.connection.commit()
-        return match_table
+            "INSERT OR IGNORE INTO rounds (id, Joueur_1, score_joueur_1, Joueur_2, score_joueur_2, winner) VALUES( NULL, :player_1, :score_player1, :player_2, :score_player2, :winner)", match)
+        print(save_table)
+        m_table = save_table.connection.commit()
+        return m_table

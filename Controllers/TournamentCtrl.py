@@ -17,16 +17,19 @@ class TournamentCtrl:
         self.rounds = Round.Round()
         self.rounds_view = RoundView.RoundView()
 
-    def start_tournament():
+    def start_tournament(self):
         """Retourne le classe TournamentCtrl, créé des nouveaux joueurs et exporte les informations dans un fichier json"""
         tournamentCtrl = TournamentCtrl()
         tournamentCtrl.create_tournament()
         tournamentCtrl.create_players()
+        tournamentCtrl.create_matches()
         tournamentCtrl.create_rounds()
-        tournamentCtrl.group_tournament_and_players()
-        tournamentCtrl.group_tournament_and_rounds()
+        # tournamentCtrl.create_matchs()
+        # tournamentCtrl.group_tournament_and_players()
+        # tournamentCtrl.group_tournament_and_rounds()
+        tournamentCtrl.save_t_sqlite()
         # tournamentCtrl.save_format_json()
-        TournamentCtrl.save_format_sqlite()
+        # TournamentCtrl.save_format_sqlite(self)
 
         menu = ApplicationCtrl.ApplicationCtrl()
 
@@ -61,6 +64,11 @@ class TournamentCtrl:
         self.round_dict = self.tournament.generate_rounds()
         return self.round_dict
 
+    # def create_matchs(self):
+    #     """Retourne les matchs sur le tournoi"""
+    #     self.round_dict = self.tournament.create_match()
+    #     return self.round_dict
+
     def group_tournament_and_players(self):
         """Retourne la liste des joueurs pour les regrouper ensemble dans un tournoi"""
         tournament_infos = self.tournament
@@ -87,16 +95,21 @@ class TournamentCtrl:
         save = self.tournament
         save.save_format_json(self.total_tournament)
 
-    def save_format_sqlite():
-        """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
-        # save = self.tournament
-        # save_sqlite = save.save_format_sqlite(self.total_tournament)
-        # return save_sqlite
+    def save_t_sqlite(self):
+        """aaa"""
+        return self.tournament.save_tournament()
 
-        save = Tournament.Tournament()
-        total_t = TournamentCtrl().group_tournament_and_matchs()
-        save_sqlite = save.save_format_sqlite(total_t)
+    def save_format_sqlite(self):
+        """Sauvegarde les informations du nouveau tournoi dans un fichier json"""
+        save = self.tournament
+        save_sqlite = save.save_format_sqlite(self.total_tournament)
         return save_sqlite
+
+        # save = Tournament.Tournament()
+        # total_t = TournamentCtrl().group_tournament_and_matchs()
+        # total_t =
+        # save_sqlite = save.save_format_sqlite(total_t)
+        # return save_sqlite
 
     def sort_players_by_ranking(self, players):
         srtd_players = sorted(players, key=lambda x: x.ranking, reverse=True)

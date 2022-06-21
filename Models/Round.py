@@ -22,19 +22,26 @@ class Round:
         self.start_time = self.date_time_now()
         self.date_time_end = self.date_time_now()
         self.r_table = ({
-            "Matches": self.matches,
+            "Matches": id(self.matches),
             "Nom": self.name,
-            "Debut du match": self.start_time,
-            "Fin du match": self.date_time_end})
+            "Debut": self.start_time,
+            "Fin": self.date_time_end})
         # return self.r_table
         return Round.save_rounds(self.r_table)
 
+    # def save_rounds(rounds):
+
+    #     save_table = Connection.cursor.executemany(
+    #         "UPDATE OR IGNORE rounds SET matches_id = ? ", (rounds,))
+    #     rounds_table = save_table.connection.commit()
+    #     return rounds_table
+    
     def save_rounds(rounds):
 
         save_table = Connection.cursor.executemany(
-            "UPDATE OR IGNORE rounds SET matches_id = ? ", (rounds,))
-        rounds_table = save_table.connection.commit()
-        return rounds_table
+            "INSERT OR IGNORE INTO rounds (id, matches_id, nom, debut_du_match, fin_du_match) VALUES( NULL, :Matches, :Nom, :Debut, :Fin)", [rounds])
+        match_table = save_table.connection.commit()
+        return match_table
 
     def generate_matches(self, players):
         matches = []
@@ -48,6 +55,7 @@ class Round:
         """Associe les joueurs et continue les autres rounds"""
         match_list = []
         rounds = []
+
 
         match_1 = Match.Match(players[0], players[1])
         match_2 = Match.Match(players[2], players[3])
@@ -85,9 +93,4 @@ class Round:
     def start_round(self):
         self.date_time_start = self.date_time_now()
 
-    # def save_match(r_table, players):
-
-    #     save_table = Connection.cursor.executemany(
-    #         "INSERT OR IGNORE INTO rounds (Name, Matches, Start_time, End_time) VALUES( ?, ?, ?, ?)", r_table)
-    #     match_table = save_table.connection.commit()
-    #     return match_table
+    
