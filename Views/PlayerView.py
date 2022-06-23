@@ -20,7 +20,6 @@ class PlayersView:
             player["Rang"] = PlayersView().display_menu_rank()
             player["Numéro associé"] = int(i + 1)
             player["Score"] = 0
-            player["Adversaires"] = []
 
             list_players_informations.append(player)
             print("")

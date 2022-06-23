@@ -1,7 +1,8 @@
 import sys
-from Controllers import Connection, RapportCtrl, TournamentCtrl
+from Controllers import RapportCtrl, TournamentCtrl
 from Models import Tournament
-from Views import MenuView, RapportView
+from Views import MenuView
+from Controllers.Connection import close_db
 
 
 class ApplicationCtrl:
@@ -26,13 +27,13 @@ class ApplicationCtrl:
             create_new_tournament()
         elif self.menu_starting == "reprendre":
             print("")
-            resume = TournamentCtrl.TournamentCtrl.resumeTournament()
+            resume = TournamentCtrl.TournamentCtrl.resume_tournament()
             resume()
         elif self.menu_starting == "rapports":
             print("")
             rapports = RapportCtrl.RapportCtrl.start_rapport()
-            rapports()
         elif self.menu_starting == "quitter":
+            close_db()
             sys.exit()
         elif self.menu_starting == "supprimer":
             self.clear_terminal()

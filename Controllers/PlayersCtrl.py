@@ -12,17 +12,3 @@ class PlayersCtrl:
         self.players = players_input.create_players_input()
         return self.players
 
-    def sort_player_by_pairing_numbers(self):
-        """Trier les joueurs par leur numéro associé"""
-
-        sorted_players = sorted(
-            self.players, key=itemgetter("Numéro associé"))
-        return sorted_players
-
-    def sort_players_by_ranking(self):
-        """Trier les joueurs par leurs rang"""
-
-        sorted_players = sorted(
-            self.players, key=lambda x: x.rank, reverse=True)
-        return sorted_players
-        

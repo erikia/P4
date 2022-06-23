@@ -1,6 +1,5 @@
 from Controllers import Connection
 from Views import PlayerView
-db = ('db.sqlite')
 
 
 class Match:
@@ -15,17 +14,6 @@ class Match:
         self.winner = ""
         self.id = ''
 
-    def tuple_players(self):
-        """Retourne une tuple d'un match contenant les joueurs et leurs scores """
-        match_list = [self.player_1, self.player_score_1], [
-            self.player_2, self.player_score_2]
-        return match_list
-
-    def score_players(self, players):
-        """Retourne la vue pour affichier le score du match"""
-        self.score = self.return_match_result(players)
-        return self.score
-    
     def return_match_result(self):
         """Retourne le match jouée et permet de rentrez les scores """
         print("\nLes résultats du match peuvent être soumis : \n")
@@ -45,53 +33,27 @@ class Match:
         if winner == "0":
             self.winner = self.player_1
             self.player_score_1 += 1
-            # return self.create_match
         elif winner == "1":
             self.winner = self.player_2
             self.player_score_2 += 1
-            # return self.create_match
         elif winner == "2":
             self.winner = "Égalité"
             self.player_score_1 += 0.5
             self.player_score_2 += 0.5
-            # return self.create_match
-
-        # list(self.player_1)[7] += self.player_score_1
-        # list(self.player_2)[7] += self.player_score_2
 
         self.m_table = ({
-            "player_1": id(self.player_1),
+            "player_1": self.player_1[1],
             "score_player1": self.player_score_1,
-            "player_2": id(self.player_2),
+            "player_2": self.player_2[1],
             "score_player2": self.player_score_2,
-            "winner": id(self.winner),
+            "winner": self.winner[1],
         })
-        print(self.winner)
-        return Match.save_db(self.m_table)
+        print('Le gagnant est : ' + self.winner[1])
+        return Match.save_match_db(self.m_table)
 
-
-
-    # def create_match(self):
-    #     self.m_table = ({
-    #         "player_1": id(self.player_1),
-    #         "score_player1": self.player_score_1,
-    #         "player_2": id(self.player_2),
-    #         "score_player2": self.player_score_2,
-    #         "winner": id(self.winner),
-    #     })
-    #     print(self.winner)
-    #     return Match.save_db(self.m_table)
-
-    # def save_db(match):
-    #     save_table = Connection.cursor.executemany(
-    #         "INSERT OR IGNORE INTO macthes VALUES( NULL, ?, ?, ?, ?)", match)
-    #     match_table = save_table.connection.commit()
-    #     return match_table
-
-    def save_db(match):
-
+    def save_match_db(match):
+        """Savegarde les matchs dans la base de donnée sqlite"""
         save_table = Connection.cursor.executemany(
             "INSERT OR IGNORE INTO matches (id, Joueur_1, score_joueur_1, Joueur_2, score_joueur_2, winner) VALUES( NULL, :player_1, :score_player1, :player_2, :score_player2, :winner)", [match])
-        print(save_table)
         m_table = save_table.connection.commit()
         return m_table

@@ -1,29 +1,27 @@
-from Controllers import ApplicationCtrl, TournamentCtrl
-from Models import Player, Tournament
+from Controllers import ApplicationCtrl, Connection
 from Views import RapportView
 
 
 class RapportCtrl:
 
     def __init__(self) -> None:
-        self.playermodel = Player.Player()
-        self.tournamentsmodel = Tournament.Tournament()
-        self.tournamentsCtrl = TournamentCtrl.TournamentCtrl()
+        self.playermodel = Connection.db_players
         self.rapportview = RapportView.RapportView()
 
     def start_rapport():
+        """Lance le menu pour afficher les rapports"""
         rapportCtrl = RapportCtrl()
         rapportCtrl.get_menu()
 
     def get_menu(self):
+        """Retourne le menu pour afficher soit les tounois soit les joueurs"""
         self.command = self.rapportview
         self.menu = self.command.get_menu_reports()
-        # self.number = self.rapportview.pick_tournaments_number()
 
         if self.menu == "tournois":
-            self.show_tournaments()
+            RapportCtrl.show_tournaments()
         if self.menu == "joueurs":
-            self.list_players()
+            self.show_list_players()
         elif self.menu == "retour":
             retour = ApplicationCtrl.ApplicationCtrl()
             retour.start()
@@ -33,30 +31,26 @@ class RapportCtrl:
                 f"dans les propositions ci-dessous\n"
             )
             self.get_menu()
-    
 
-    def list_players(self, players='all', mode='alpha'):
+    def show_tournaments():
+        """Retourne une liste de la base de donnée de tous les tournois"""
+        tournaments_list = Connection.db_tournaments
+        return print(tournaments_list)
+
+    def show_list_players(self, players='all', mode='alpha'):
+        """Retourne une liste de la base de donnée de tous les joueurs selon leurs rangs"""
         if players == 'all':
-            players = self.playermodel.read_players()
+            players = self.playermodel
         if mode == 'rank':
-            players = self.tournamentsCtrl.sort_players_by_ranking(players)
+            players = self.sort_players_by_ranking(
+                self.playermodel)
         else:
             players = sorted(
-                players, key=lambda x: (x.last_name, x.first_name),
+                players, key=lambda x: (x[1], x[2]),
                 reverse=False)
 
         self.rapportview.show_players(players)
-
-    def list_players_ranking(self):
-        self.list_players(mode='ranking')
-
-    def list_players_tournament(self, mode='alpha'):
-        selected_tournament = self.tournamentsCtrl.select_tournament()
-        players = selected_tournament.players
-        self.list_players(players, mode=mode)
-
-    def list_players_tournament_ranking(self):
-        self.list_players_tournament(mode='ranking')
-
-    def all_tournaments(self):
-        self.t_controller.show_tournaments()
+    
+    def sort_players_by_ranking(self, players):
+        srtd_players = sorted(players, key=lambda x: x.ranking, reverse=True)
+        return srtd_players

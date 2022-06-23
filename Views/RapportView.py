@@ -59,57 +59,11 @@ class RapportView:
 
         return self.command
 
-    def return_tournaments_number(self):
-
-        print(
-            f"\nMenu des rapports des tournois\n"
-        )
-
-        print("\nMerci d'enter le numero du tournoi a poursuivre ou 'retour'")
-        print("Vous pouvez le rechercher via la fonction show du menu principal\n")
-
-        # if self.number:
-        #     try:
-        #         ask_number = int(input("Numero du tournoi: "))
-        #         self.number = ask_number
-        #     except ValueError:
-        #         print(f"Merci d'entrer un nombre entier")
-        #         print("")
-        #         self.ask_number()
-
-        #     return self.number
-
-    def pick_tournaments_number(self):
-        try:
-            tournaments_number = int(input("Numero du tournoi: "))
-            self.number = tournaments_number
-        except ValueError:
-            print(f"Merci d'entrer un nombre entier")
-            print("")
-            self.pick_tournaments_number()
-
-        return self.number
 
     def show_players(self, players):
+        """Retourne les joueurs avec leurs noms de familles,prénoms et rang"""
         for player in players:
             print(""" {} - {}
         Ranking: {}
         ----------------""".format(
-                player.last_name, player.first_name, player.ranking))
-
-    def show_rounds(self, rounds):
-        for round_ in rounds:
-            print("""
-                    {}
-                    {} - {}
-                    """.format(round_.name, round_.date_time_start, round_.date_time_end))
-
-    def show_match(self, match, players):
-        p1 = players[0]
-        p2 = players[0]
-        print("""
-            {} {} vs {} {}
-            Score:      {} - {}
-            -----------------------""".format(
-            p1.first_name, p1.last_name, p2.first_name, p2.last_name,
-            match.p1_score, match.p2_score))
+                player[1], player[2], player[5]))
