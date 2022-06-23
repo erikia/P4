@@ -12,9 +12,9 @@ Nous allons ensuite placer les liens des livres dans un dictionnaire qui procèd
 
 Dans ce programme, les fonctionnalités du menu sont :
 
--Commencer un nouveau tournois
--Reprendre un ancien tournois
--Affichier les rapports
+- Commencer un nouveau tournois
+- Reprendre un ancien tournois
+- Affichier les rapports
 
 
 # Utilisation
@@ -25,27 +25,27 @@ Pour la mise en palce de l'environnement virtuel :
 Dans le Windows Powershell il faudra cloner le git.
 
 Récupération du projet
-    $ git clone hhttps://github.com/erikia/P4.git
+$ git clone hhttps://github.com/erikia/P4.git
 Activer l'environnement virtuel
-    $ cd P2_OC 
-    $ python -m venv env 
-    $ ~env\scripts\activate
+$ cd P2_OC 
+$ python -m venv env 
+$ ~env\scripts\activate
 Installer les modules
-    $ pip install -r requirements.txt
+$ pip install -r requirements.txt
 Executer le programme
-    $ python main.py
+$ python main.py
 
 ----------------------------------------------
 ### Sur MacOS ou Linux :
 Dans le terminal, il faudra cloner le git.
 
 Récupération du projet
-    $ git clone https://github.com/erikia/P4.git
+$ git clone https://github.com/erikia/P4.git
 Activer l'environnement virtuel
-    $ cd P2_OC 
-    $ python3 -m venv env 
-    $ source env/bin/activate
+$ cd P2_OC 
+$ python3 -m venv env 
+$ source env/bin/activate
 Installer les modules
-    $ pip install -r requirements.txt
+$ pip install -r requirements.txt
 Executer le programme
-    $ python3 main.py
+$ python3 main.py

@@ -1,6 +1,6 @@
 from Controllers import ApplicationCtrl
 from Controllers import PlayersCtrl
-from Models import Player, Round
+from Models import Round
 from Models import Tournament
 from Views import RoundView, TournamentView
 
@@ -60,8 +60,3 @@ class TournamentCtrl:
     def save_format_sqlite(self):
         """Sauvegarde les informations du nouveau tournoi dans la base de donnée sqlite"""
         return self.tournament.create_tournament()
-
-    def resume_tournament(self):
-        """Reprend un ancien tournoi en cours"""
-        lenght = self.tournament
-        # lenght_db = lenght.get_length_db()

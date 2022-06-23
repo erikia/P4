@@ -25,13 +25,9 @@ class ApplicationCtrl:
             create_new_tournament = TournamentCtrl.TournamentCtrl.start_tournament(
                 self)
             create_new_tournament()
-        elif self.menu_starting == "reprendre":
-            print("")
-            resume = TournamentCtrl.TournamentCtrl.resume_tournament()
-            resume()
         elif self.menu_starting == "rapports":
             print("")
-            rapports = RapportCtrl.RapportCtrl.start_rapport()
+            RapportCtrl.RapportCtrl.start_rapport()
         elif self.menu_starting == "quitter":
             close_db()
             sys.exit()

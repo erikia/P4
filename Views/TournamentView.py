@@ -1,3 +1,6 @@
+from Models import Tournament
+
+
 class TournamentView:
     """La classe qui demande des informations sur le tournoi à l'utilisateur"""
 
@@ -33,3 +36,4 @@ class TournamentView:
         print("")
 
         return informations_rounds_sqlite
+    

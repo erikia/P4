@@ -12,10 +12,6 @@ class MenuView:
             f"Commencer un nouveau tournoi",
         )
         print(
-            f"reprendre:            ",
-            f"Reprendre un ancien tournoi",
-        )
-        print(
             f"rapports:             ",
             f"Afficher les rapports",
         )
@@ -36,8 +32,6 @@ class MenuView:
 
         if input_option == "commencer":
             self.command = "commencer"
-        elif input_option == "reprendre":
-            self.command = "reprendre"
         elif input_option == "rapports":
             self.command = "rapports"
         elif input_option == "supprimer":
