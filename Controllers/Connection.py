@@ -1,17 +1,16 @@
-from multiprocessing import connection
 import sqlite3
 
 try:
-    connection = sqlite3.connect('db.sqlite')
+    connection = sqlite3.connect("db.sqlite")
     cursor = connection.cursor()
 
-    db_players = cursor.execute('SELECT * FROM players').fetchall()
+    db_players = cursor.execute("SELECT * FROM players").fetchall()
 
-    db_tournaments = cursor.execute('SELECT * FROM tournaments').fetchall()
+    db_tournaments = cursor.execute("SELECT * FROM tournaments").fetchall()
 
-    db_rounds = cursor.execute('SELECT * FROM rounds').fetchall()
+    db_rounds = cursor.execute("SELECT * FROM rounds").fetchall()
 
-    db_matchs = cursor.execute('SELECT * FROM matches').fetchall()
+    db_matchs = cursor.execute("SELECT * FROM matches").fetchall()
 
     connection.commit()
     print("Connexion SQLite ouverte")
@@ -27,32 +26,3 @@ def close_db():
 
     except sqlite3.Error as error:
         print("Erreur lors de la fermeture à la base de donnée", error)
-
-
-# class Connection:
-
-#     def connect_db() :
-#         try:
-#             connection = sqlite3.connect('db.sqlite')
-#             cursor = connection.cursor()
-#             print("Connexion réussie à SQLite")
-
-#             db_players = cursor.execute('SELECT * FROM players').fetchall()
-
-#             db_tournaments = cursor.execute('SELECT * FROM tournaments').fetchall()
-
-
-#             db_rounds = cursor.execute('SELECT * FROM rounds').fetchall()
-
-
-#             db_matchs = cursor.execute('SELECT * FROM matches').fetchall()
-
-#             connection.commit()
-
-#         except sqlite3.Error as error:
-#             print("Erreur lors de la connexion à la base de donnée", error)
-
-#     def close_db():
-#         db = Connection.connect_db().connection
-#         db.close()
-#         print("Connexion SQLite est fermée")

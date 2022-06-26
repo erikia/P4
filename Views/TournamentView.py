@@ -1,16 +1,11 @@
-from Models import Tournament
-
-
 class TournamentView:
     """La classe qui demande des informations sur le tournoi à l'utilisateur"""
 
-    def ask_tournament(self):
-        """Retourne un dictionnaire des informations entrées par l'utilisateur sur un tournois"""
-        print(
-            f"Veuillez entrer les informations sur le nouveau tournoi"
-        )
+    def ask_tournament(tournament_dict):
+        """Retourne un dictionnaire des informations du tournois"""
+        print("Veuillez entrer les informations sur le nouveau tournoi")
         print("")
-        informations_questions = {}
+        tournament_dict = {}
         informations_rounds_sqlite = {}
 
         questions = [
@@ -22,18 +17,27 @@ class TournamentView:
         ]
 
         for i in questions:
-            informations_questions[i] = input(f"{i}:  ")
+            tournament_dict[i] = input(f"{i}:  ")
 
-        informations_rounds_sqlite["Nom/ID du tournois"] = informations_questions["Nom/ID du tournois"]
-        informations_rounds_sqlite["Adresse du tournois"] = informations_questions["Adresse du tournois"]
-        informations_rounds_sqlite["Les dates du tournois"] = informations_questions["Les dates du tournois"]
+        informations_rounds_sqlite["Nom/ID du tournois"] = tournament_dict[
+            "Nom/ID du tournois"
+        ]
+        informations_rounds_sqlite["Adresse du tournois"] = tournament_dict[
+            "Adresse du tournois"
+        ]
+        informations_rounds_sqlite["Les dates du tournois"] = tournament_dict[
+            "Les dates du tournois"
+        ]
         informations_rounds_sqlite["Nombre total de rounds"] = 4
         informations_rounds_sqlite["Nombre du round en cours"] = 0
-        informations_rounds_sqlite["Contrôle du temps"] = informations_questions["Contrôle du temps"]
+        informations_rounds_sqlite["Contrôle du temps"] = tournament_dict[
+            "Contrôle du temps"
+        ]
         informations_rounds_sqlite["Numbre totals de joeurs"] = 8
-        informations_rounds_sqlite["Commentaire"] = informations_questions["Commentaire"]
+        informations_rounds_sqlite["Commentaire"] = tournament_dict[
+            "Commentaire"
+            ]
         informations_rounds_sqlite["Rounds"] = []
         print("")
 
         return informations_rounds_sqlite
-    

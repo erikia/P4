@@ -1,5 +1,5 @@
 class RapportView:
-    """La classe qui affiche le menu des rapports, et permmet de selectionner la commande des sous-menu"""
+    """La classe qui affiche le menu des rapports"""
 
     def __init__(self):
         self.command = None
@@ -8,19 +8,19 @@ class RapportView:
     def get_menu_reports(self):
         """Afficher les possibilités du menu des rapports à l'utilisateur"""
 
-        print(f"\n\n---- Menu des rapports ----\n")
+        print("\n\n---- Menu des rapports ----\n")
         print("\nMerci d'entrer un des mots suivant: ")
         print(
-            f"tournois:            ",
-            f"Affichier les tournois",
+            "tournois:            ",
+            "Affichier les tournois",
         )
         print(
-            f"joueurs:            ",
-            f"Affichier les joueurs",
+            "joueurs:            ",
+            "Affichier les joueurs",
         )
         print(
-            f"retour:              ",
-            f"Retour au menu principal\n",
+            "retour:              ",
+            "Retour au menu principal\n",
         )
         input_option = input("Veuillez rentrer votre option : ")
 
@@ -32,8 +32,8 @@ class RapportView:
             self.command = "retour"
         else:
             print(
-                f"\nMerci de rentrer la bonne commande comme indiqué",
-                f"dans les propositions ci-dessous\n"
+                "\nMerci de rentrer la bonne commande comme indiqué",
+                "dans les propositions ci-dessous\n",
             )
             self.launch_command_menu_reports()
 
@@ -52,18 +52,36 @@ class RapportView:
             self.command = "retour"
         else:
             print(
-                f"\nMerci de rentrer la bonne commande comme indiqué",
-                f"dans les propositions ci-dessous\n"
+                "\nMerci de rentrer la bonne commande comme indiqué",
+                "dans les propositions ci-dessous\n",
             )
             self.launch_command_menu_reports()
 
         return self.command
 
-
     def show_players(self, players):
         """Retourne les joueurs avec leurs noms de familles,prénoms et rang"""
         for player in players:
-            print(""" {} - {}
-        Ranking: {}
+            print(
+                """ {} - {}
+        Rang: {}
         ----------------""".format(
-                player[1], player[2], player[5]))
+                    player[1], player[2], player[5]
+                )
+            )
+
+    def show_tournaments(self, tournaments):
+        """Retourne les joueurs avec leurs noms de familles,prénoms et rang"""
+        for info in tournaments:
+            print(
+                """
+            Nom: {}
+            Adresse: {}
+            Date: {}
+            Totals rounds : {}
+            Controle du temps: {}
+            Commentaire: {}
+        ----------------""".format(
+                    info[8], info[1], info[2], info[3], info[4], info[7]
+                )
+            )

@@ -1,18 +1,19 @@
 class PlayersView:
-    """La classe qui permet à l'utilisateur de rentrer les informations du joeurs"""
+    """Permet à l'utilisateur de rentrer les informations du joeurs"""
 
     def create_players_input(self):
-        """Retourne un dictionnaire des informations entrées par l'utilisateur sur les joueurs"""
+        """Retourne un dictionnaire des informations des joueurs"""
 
-        print(
-            f"Entrée des informations sur les joueurs"
-        )
+        print("Entrée des informations sur les joueurs")
 
         list_players_informations = []
         for i in range(8):
             player = {}
             print(
-                "Veuillez entrer les informations du numéro de joueur " + str(i + 1) + ":")
+                "Veuillez entrer les informations du numéro de joueur "
+                + str(i + 1)
+                + ":"
+            )
             player["Nom de famille"] = PlayersView().display_menu_name()
             player["Prénom"] = PlayersView().display_menu_first_name()
             player["Date de naissance"] = PlayersView().display_menu_date()
@@ -26,8 +27,15 @@ class PlayersView:
 
         return list_players_informations
 
-    def verify_user_input(self, msg_display, msg_error, value_type, assertions=None, default_value=None):
-        """Vérifie les entrées des utilisateurs sur les joueurs et retourne les messages d'erreurs"""
+    def verify_user_input(
+        self,
+        msg_display,
+        msg_error,
+        value_type,
+        assertions=None,
+        default_value=None,
+    ):
+        """Vérifie les entrées des utilisateurs sur les joueurs"""
 
         while True:
             value = input(msg_display)
@@ -84,17 +92,13 @@ class PlayersView:
         """Retourne l'input du nom de famille d'un joueur"""
 
         name = input("""Nom du joueur:\n> """)
-        return {
-            "Nom de famille": name
-        }
+        return {"Nom de famille": name}
 
     def display_menu_first_name(self):
         """Retourne l'input du prénom d'un joueur"""
 
         first_name = input("""Prénom du joueur:\n> """)
-        return {
-            "Prénom": first_name
-        }
+        return {"Prénom": first_name}
 
     def display_menu_date(self):
         """Retourne l'input de la date de naissance d'un joueur"""
@@ -102,25 +106,25 @@ class PlayersView:
         date = PlayersView().verify_user_input(
             msg_display="Date de naissance (format DD-MM-YYYY):\n> ",
             msg_error="Veuillez entrer une date au format valide: DD-MM-YYYY",
-            value_type="date"
+            value_type="date",
         )
-        return {
-            "Date de naissance": date
-        }
+        return {"Date de naissance": date}
 
     def display_menu_gender(self):
         """Retourne l'input du sexe d'un joueur"""
 
-        gender = PlayersView().verify_user_input(
-            msg_display="Sexe (H ou F):\n> ",
-            msg_error="Veuillez entrer H ou F",
-            value_type="selection",
-            input=["H", "h", "F", "f"]
-        ).upper()
+        gender = (
+            PlayersView()
+            .verify_user_input(
+                msg_display="Sexe (H ou F):\n> ",
+                msg_error="Veuillez entrer H ou F",
+                value_type="selection",
+                assertions=["H", "h", "F", "f"],
+            )
+            .upper()
+        )
 
-        return {
-            "Sexe": gender
-        }
+        return {"Sexe": gender}
 
     def display_menu_rank(self):
         """Retourne l'input du rang d'un joueur"""
@@ -128,9 +132,7 @@ class PlayersView:
         rank = PlayersView().verify_user_input(
             msg_display="Rang:\n> ",
             msg_error="Veuillez entrer une valeur numérique valide.",
-            value_type="numeric"
+            value_type="numeric",
         )
 
-        return {
-            "Rang": rank
-        }
+        return {"Rang": rank}

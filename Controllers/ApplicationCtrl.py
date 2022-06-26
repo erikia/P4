@@ -1,4 +1,6 @@
+# import os
 import sys
+from os import system, name
 from Controllers import RapportCtrl, TournamentCtrl
 from Models import Tournament
 from Views import MenuView
@@ -11,6 +13,7 @@ class ApplicationCtrl:
     def __init__(self):
         self.controller = None
         self.tournament = Tournament.Tournament()
+        self.tournamentCtrl = TournamentCtrl.TournamentCtrl()
 
     def start(self):
         """
@@ -22,9 +25,7 @@ class ApplicationCtrl:
 
         if self.menu_starting == "commencer":
             print("")
-            create_new_tournament = TournamentCtrl.TournamentCtrl.start_tournament(
-                self)
-            create_new_tournament()
+            self.tournamentCtrl.start_tournament()
         elif self.menu_starting == "rapports":
             print("")
             RapportCtrl.RapportCtrl.start_rapport()
@@ -34,3 +35,13 @@ class ApplicationCtrl:
         elif self.menu_starting == "supprimer":
             self.clear_terminal()
             self.start()
+
+    def clear_terminal(self):
+        """Supprimer le terminal"""
+        # Pour windows
+        if name == 'nt':
+            _ = system('cls')
+    
+        # Pour mac et linux
+        else:
+            _ = system('clear')

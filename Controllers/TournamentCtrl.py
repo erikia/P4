@@ -9,16 +9,14 @@ class TournamentCtrl:
     """La classe qui gère le tournoi"""
 
     def __init__(self):
-        """initier un objet sur les autres modules du code (modèle, vue et contrôleur de menu)"""
-        self.tournament_input = TournamentCtrl.get_tournament_infos()
+        """initier un objet sur les autres modules"""
         self.players_input = PlayersCtrl.PlayersCtrl()
         self.tournament = Tournament.Tournament()
-        self.tournois_test = Tournament.Tournament()
         self.rounds = Round.Round()
         self.rounds_view = RoundView.RoundView()
 
     def start_tournament(self):
-        """Retourne le classe TournamentCtrl, créé des nouveaux joueurs et exporte les informations dans un fichier json"""
+        """Commencer la création d'un nouveau tournois"""
         tournamentCtrl = TournamentCtrl()
         tournamentCtrl.create_tournament()
         tournamentCtrl.create_players()
@@ -28,15 +26,16 @@ class TournamentCtrl:
 
         menu.start()
 
-    def get_tournament_infos():
-        """Retourne un dictionnaire des informations du tournois """
+    def get_tournament_infos(self):
+        """Retourne un dictionnaire des informations du tournois"""
         tournament_input = TournamentView.TournamentView()
-        tournament = tournament_input.ask_tournament()
+        self.tournament_dict = tournament_input.ask_tournament()
 
-        return tournament
+        return self.tournament_dict
 
     def create_tournament(self):
         """Retourne les informations sur le tournoi rentrée par le menu"""
+        self.tournament_input = TournamentCtrl.get_tournament_infos(self)
         self.tournament_dict = self.tournament_input
         return self.tournament_dict
 
@@ -58,5 +57,5 @@ class TournamentCtrl:
         return self.round_dict
 
     def save_format_sqlite(self):
-        """Sauvegarde les informations du nouveau tournoi dans la base de donnée sqlite"""
-        return self.tournament.create_tournament()
+        """Sauvegarde les informations du nouveau tournoi dans sqlite"""
+        return self.tournament.create_tournament(self.tournament_dict)

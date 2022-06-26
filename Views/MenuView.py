@@ -1,27 +1,27 @@
 class MenuView:
-    """La classe qui affiche le menu principal, et permmet de selectionner la commande des sous-menu"""
+    """La classe qui affiche le menu principal"""
 
     def __init__(self):
         """Afficher les possibilités du menu principal à l'utilisateur"""
 
-        print(f"\n\n ---- Tournoi d'échecs ----")
-        print(f"\n\n---- Menu principal ----\n")
+        print("\n\n ---- Tournoi d'échecs ----")
+        print("\n\n---- Menu principal ----\n")
         print("\nMerci d'entrer un des mots suivant: ")
         print(
-            f"commencer:            ",
-            f"Commencer un nouveau tournoi",
+            "commencer:            ",
+            "Commencer un nouveau tournoi",
         )
         print(
-            f"rapports:             ",
-            f"Afficher les rapports",
+            "rapports:             ",
+            "Afficher les rapports",
         )
         print(
-            f"supprimer:            ",
-            f"Effacer les informations précédentes présentes sur la console",
+            "supprimer:            ",
+            "Effacer les informations précédentes présentes sur la console",
         )
         print(
-            f"quitter:              ",
-            f"Quitter le programme\n",
+            "quitter:              ",
+            "Quitter le programme\n",
         )
         self.command = None
 
@@ -41,8 +41,8 @@ class MenuView:
             self.command = "quitter"
         else:
             print(
-                f"\nMerci de rentrer la bonne commande comme indiqué",
-                f"dans les propositions ci-dessous\n"
+                "\nMerci de rentrer la bonne commande comme indiqué",
+                "dans les propositions ci-dessous\n",
             )
             self.launch_command_menu()
 
